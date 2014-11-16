@@ -1,4 +1,4 @@
-Delphi-AWS-SDK
+DelphiAWSSDK
 ==============
 
 The Delphi AWS SDK enables Delphi/Pascal developers to easily work with Amazon Web Services.
