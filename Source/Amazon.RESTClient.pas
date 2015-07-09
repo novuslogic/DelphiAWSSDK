@@ -22,7 +22,7 @@ type
 
     procedure AddHeader(aName, aValue: UTF8String);
 
-    procedure Post(aUrl: string; aRequest: UTF8String);
+    procedure Post(aUrl: string; aRequest: UTF8String; var aResponse: UTF8String);
 
     property ResponseCode: Integer
       read GetResponseCode;
@@ -67,20 +67,26 @@ begin
 end;
 
 
-procedure TAmazonRESTClient.Post(aUrl: string; aRequest: UTF8String);
+procedure TAmazonRESTClient.Post(aUrl: string; aRequest: UTF8String; var aResponse: UTF8String);
 Var
-   RBody: TStringStream;
+  FSource,
+  FResponseContent: TStringStream;
 begin
 
   try
-    RBody := TStringStream.Create(aRequest);
-    RBody.Position := 0;
+    FSource := TStringStream.Create(aRequest);
+    FSource.Position := 0;
+
+    FResponseContent := TStringStream.Create;
 
     FIdHttp.Request.ContentType := Content_type;
-   // FIdHttp.Request.ContentEncoding := 'utf-8';
 
-    FIdHttp.DoPost(AUrl, RBody)
+    FIdHttp.DoPost(AUrl, FSource, FResponseContent);
 
+    aResponse := FResponseContent.DataString;
+
+    FResponseContent.Free;
+    FSource.Free;
 
   except
     on E: EIdHTTPProtocolException do
@@ -90,15 +96,7 @@ begin
 
       if E.ErrorCode = 404 then
         exit;
-     (*
-      retryMode := hrmRaise;
-      if assigned(OnError) then
-        OnError(e.Message, e.ErrorMessage, e.ErrorCode, retryMode);
-      if retryMode = hrmRaise then
-        raise EHTTPError.Create(e.Message, e.ErrorMessage, e.ErrorCode)
-      else if retryMode = hrmRetry then
-        Post(AUrl, AContent, AResponse);
-        *)
+
     end;
     on E: EIdSocketError do
     begin
@@ -106,15 +104,7 @@ begin
       fsErrorMessage := E.Message;
 
       FIdHttp.Disconnect;
-      (*
-      retryMode := hrmRaise;
-      if assigned(OnConnectionLost) then
-        OnConnectionLost(e, retryMode);
-      if retryMode = hrmRaise then
-        raise
-      else if retryMode = hrmRetry then
-        Post(AUrl, AContent, AResponse);
-        *)
+
     end;
   end;
 end;
