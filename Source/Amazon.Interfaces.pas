@@ -46,7 +46,14 @@ type
 
   IAmazonSignature = interface
   ['{56901E5E-BA6C-49E4-B730-CA58AE7F8DCB}']
-    function Signature(aRequest: IAmazonRequest) : UTF8String;
+    function getsignature: UTF8String;
+    function getauthorization_header: UTF8String;
+
+    procedure Sign(aRequest: IAmazonRequest);
+
+    property Signature: UTF8String read getsignature;
+    property Authorization_header: UTF8String read getauthorization_header;
+
   end;
 
 implementation
