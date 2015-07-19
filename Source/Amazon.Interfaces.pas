@@ -3,6 +3,20 @@ unit Amazon.Interfaces;
 interface
 
 type
+  IAmazonClient = interface
+  ['{24BF1E03-A208-4F7D-9FC7-875BC33D339F}']
+    function getsecret_key: UTF8String;
+    procedure setsecret_key(value: UTF8String);
+    function getaccess_key: UTF8String;
+    procedure setaccess_key(value: UTF8String);
+    function getregion: UTF8String;
+    procedure setregion(value: UTF8String);
+
+    property region: UTF8String read getregion write setregion;
+    property secret_key: UTF8String read getsecret_key write setsecret_key;
+    property access_key: UTF8String read getaccess_key write setaccess_key;
+  end;
+
   IAmazonRequest = interface
   ['{DA029A3F-05C2-4286-BF0B-4FE859AC8A64}']
     function getsecret_key: UTF8String;
@@ -48,7 +62,7 @@ type
   ['{56901E5E-BA6C-49E4-B730-CA58AE7F8DCB}']
     function getsignature: UTF8String;
     function getauthorization_header: UTF8String;
-
+    function GetContent_type: UTF8String;
     procedure Sign(aRequest: IAmazonRequest);
 
     property Signature: UTF8String read getsignature;

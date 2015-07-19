@@ -36,9 +36,12 @@ type
       function getauthorization_header: UTF8String;
     public
       procedure Sign(aRequest: IAmazonRequest);
+      function GetContent_type: UTF8String;
 
       property Signature: UTF8String read getsignature;
       property Authorization_header: UTF8String read getauthorization_header;
+
+
     end;
 
 
@@ -74,7 +77,7 @@ begin
 
   fsmethod := 'POST';
 
-  fsContent_type := awsContent_typeV4;
+  fsContent_type := GetContent_type;
 
   fscanonical_uri := '/';
 
@@ -111,5 +114,10 @@ begin
   result := fsauthorization_header;
 end;
 
+
+function TAmazonSignatureV4.GetContent_type: UTF8String;
+begin
+  result := awsContent_typeV4;
+end;
 
 end.

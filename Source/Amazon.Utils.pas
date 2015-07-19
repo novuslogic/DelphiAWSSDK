@@ -15,6 +15,7 @@ function BytesToHex(const Bytes: array of byte): string;
 function HexToBytes(const S: String): TidBytes;
 function HashSHA256(aStr: String): String;
 
+
 implementation
 
 function DateTimeToISO8601(const aDateTime: TDateTime): string;
