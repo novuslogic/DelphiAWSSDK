@@ -11,7 +11,10 @@ type
     procedure setaccess_key(value: UTF8String);
     function getregion: UTF8String;
     procedure setregion(value: UTF8String);
+    function getprofile: UTF8String;
+    procedure setprofile(value: UTF8String);
 
+    property profile: UTF8String read getprofile write setprofile;
     property region: UTF8String read getregion write setregion;
     property secret_key: UTF8String read getsecret_key write setsecret_key;
     property access_key: UTF8String read getaccess_key write setaccess_key;
