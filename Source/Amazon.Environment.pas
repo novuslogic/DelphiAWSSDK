@@ -9,11 +9,12 @@ const
   AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID';
   AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY';
   AWS_CREDENTIAL_FILE = 'AWS_CREDENTIAL_FILE';
+  AWS_PROFILE = 'AWS_PROFILE';
 
 type
   TAmazonEnvironment = class
     protected
-      fsaprofile: UTF8String;
+      fsprofile: UTF8String;
       fssecret_key: UTF8String;
       fsaccess_key: UTF8String;
       fsregion: UTF8String;
@@ -23,13 +24,15 @@ type
       function getaccess_key: UTF8String;
       function getregion: UTF8String;
       function getcredential_file: UTF8String;
+      function getprofile: UTF8String;
+
       function GetEnvVariableValue(const aVariablename: string): string;
     public
-      constructor Create(aprofile: UTF8String = ''; acredential_file: UTF8String = '');
       property secret_key: UTF8String read getsecret_key;
       property access_key: UTF8String read getaccess_key;
       property region: UTF8String read getregion;
       property credential_file: UTF8String read getcredential_file;
+      property profile: UTF8String read getprofile;
 
       procedure GetEnvironmentVariables;
    end;
@@ -37,18 +40,11 @@ type
 
 implementation
 
-
-constructor TAmazonEnvironment.Create(aprofile: UTF8String = ''; acredential_file: UTF8String = '');
-begin
-  fsaprofile := aprofile;
-  fscredential_file := acredential_file;
-end;
-
 function TAmazonEnvironment.GetEnvVariableValue(const aVariablename: string): string;
 var
   BufSize: Integer;
 begin
-  Result := GetEnvironmentVariable(aVariablename);
+  Result := Trim(GetEnvironmentVariable(aVariablename));
 end;
 
 
@@ -73,11 +69,17 @@ begin
   fssecret_key := GetEnvVariableValue(AWS_SECRET_ACCESS_KEY);
   fsregion := GetEnvVariableValue(AWS_REGION);
   fscredential_file := GetEnvVariableValue(AWS_CREDENTIAL_FILE);
+  fsProfile := GetEnvVariableValue(AWS_PROFILE);
 end;
 
 function TAmazonEnvironment.getcredential_file: UTF8String;
 begin
   result := fscredential_file;
+end;
+
+function TAmazonEnvironment.getprofile: UTF8String;
+begin
+  Result := fsProfile;
 end;
 
 end.
