@@ -3,7 +3,8 @@ unit Amazon.Utils;
 interface
 
 uses Classes,IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils, System.DateUtils, idGlobal,
-     IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash;
+     IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
+     Windows;
 
 
 
@@ -14,7 +15,7 @@ function HmacSHA256Ex(const AKey: TidBytes;aStr: UTF8String): TidBytes;
 function BytesToHex(const Bytes: array of byte): string;
 function HexToBytes(const S: String): TidBytes;
 function HashSHA256(aStr: String): String;
-
+function GetAWSUserDir: UTF8String;
 
 implementation
 
@@ -106,5 +107,19 @@ begin
     FHashSHA256.Free;
   end;
 end;
+
+
+function IsExistsAWSUserDir: Boolean;
+begin
+   Result := (GetAWSUserDir = '');
+end;
+
+function GetAWSUserDir: UTF8String;
+begin
+  Result := GetEnvironmentVariable('USERPROFILE') + '\.aws';
+end;
+
+
+
 
 end.
