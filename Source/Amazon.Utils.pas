@@ -108,15 +108,12 @@ begin
   end;
 end;
 
-
-function IsExistsAWSUserDir: Boolean;
-begin
-   Result := (GetAWSUserDir = '');
-end;
-
 function GetAWSUserDir: UTF8String;
 begin
   Result := GetEnvironmentVariable('USERPROFILE') + '\.aws';
+
+  if Not DirectoryExists(Result) then Result := '';
+
 end;
 
 

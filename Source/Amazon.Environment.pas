@@ -13,26 +13,31 @@ const
 
 type
   TAmazonEnvironment = class
-    protected
-      fsprofile: UTF8String;
-      fssecret_key: UTF8String;
-      fsaccess_key: UTF8String;
-      fsregion: UTF8String;
-      fscredential_file: UTF8String;
-    private
+  protected
+    fsprofile: UTF8String;
+    fssecret_key: UTF8String;
+    fsaccess_key: UTF8String;
+    fsregion: UTF8String;
+    fscredential_file: UTF8String;
+  private
       function getsecret_key: UTF8String;
+      procedure setsecret_key(value: UTF8String);
       function getaccess_key: UTF8String;
+      procedure setaccess_key(value: UTF8String);
       function getregion: UTF8String;
-      function getcredential_file: UTF8String;
+      procedure setregion(value: UTF8String);
       function getprofile: UTF8String;
+      procedure setprofile(value: UTF8String);
+      function getcredential_file: UTF8String;
+      procedure setcredential_file(value: UTF8String);
 
       function GetEnvVariableValue(const aVariablename: string): string;
     public
-      property secret_key: UTF8String read getsecret_key;
-      property access_key: UTF8String read getaccess_key;
-      property region: UTF8String read getregion;
-      property credential_file: UTF8String read getcredential_file;
-      property profile: UTF8String read getprofile;
+      property profile: UTF8String read getprofile write setprofile;
+      property credential_file: UTF8String read getcredential_file write setcredential_file;
+      property region: UTF8String read getregion write setregion;
+      property secret_key: UTF8String read getsecret_key write setsecret_key;
+      property access_key: UTF8String read getaccess_key write setaccess_key;
 
       procedure GetEnvironmentVariables;
    end;
@@ -48,20 +53,6 @@ begin
 end;
 
 
-function TAmazonEnvironment.getaccess_key: UTF8String;
-begin
-  Result := fsaccess_key;
-end;
-
-function TAmazonEnvironment.getsecret_key: UTF8String;
-begin
-  Result := fssecret_key;
-end;
-
-function TAmazonEnvironment.getregion: UTF8String;
-begin
-  Result := fsregion;
-end;
 
 procedure TAmazonEnvironment.GetEnvironmentVariables;
 begin
@@ -72,14 +63,53 @@ begin
   fsProfile := GetEnvVariableValue(AWS_PROFILE);
 end;
 
-function TAmazonEnvironment.getcredential_file: UTF8String;
+function TAmazonEnvironment.getaccess_key: UTF8String;
 begin
-  result := fscredential_file;
+  Result := fsaccess_key;
+end;
+
+procedure TAmazonEnvironment.setaccess_key(value: UTF8String);
+begin
+  fsaccess_key := value;
+end;
+
+function TAmazonEnvironment.getsecret_key: UTF8String;
+begin
+  Result := fssecret_key;
+end;
+
+procedure TAmazonEnvironment.setsecret_key(value: UTF8String);
+begin
+  fssecret_key := value;
+end;
+
+function TAmazonEnvironment.getregion: UTF8String;
+begin
+  Result := fsregion;
+end;
+
+procedure TAmazonEnvironment.setregion(value: UTF8String);
+begin
+  fsregion := value;
 end;
 
 function TAmazonEnvironment.getprofile: UTF8String;
 begin
-  Result := fsProfile;
+  Result := fsprofile;
 end;
 
+procedure TAmazonEnvironment.setprofile(value: UTF8String);
+begin
+  fsprofile := value;
+end;
+
+function TAmazonEnvironment.getcredential_file: UTF8String;
+begin
+  Result := fscredential_file;
+end;
+
+procedure TAmazonEnvironment.setcredential_file(value: UTF8String);
+begin
+  fscredential_file := value;
+end;
 end.
