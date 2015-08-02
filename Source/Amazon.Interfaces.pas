@@ -15,8 +15,8 @@ type
     function getaccess_key: UTF8String;
     procedure setaccess_key(value: UTF8String);
 
-    function gettarget: UTF8String;
-    procedure settarget(value: UTF8String);
+    function gettargetPrefix: UTF8String;
+    procedure settargetPrefix(value: UTF8String);
     function getservice: UTF8String;
     procedure setservice(value: UTF8String);
     function getregion: UTF8String;
@@ -29,6 +29,8 @@ type
     procedure setdate_stamp(value: UTF8String);
     function getendpoint: UTF8String;
     procedure setendpoint(value: UTF8String);
+    function getoperationName: UTF8String;
+    procedure setoperationName(value: UTF8String);
 
     function getrequest_parameters: UTF8String;
     procedure setrequest_parameters(value: UTF8String);
@@ -36,7 +38,8 @@ type
     property secret_key: UTF8String read getsecret_key write setsecret_key;
     property access_key: UTF8String read getaccess_key write setaccess_key;
 
-    property target: UTF8String read gettarget write settarget;
+    property targetPrefix: UTF8String read gettargetPrefix write settargetPrefix;
+    property operationName: UTF8String read getoperationName write setoperationName;
     property service: UTF8String read getservice write setservice;
     property region: UTF8String read getregion write setregion;
     property host: UTF8String read gethost write sethost;

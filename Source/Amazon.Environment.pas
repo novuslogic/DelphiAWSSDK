@@ -20,27 +20,27 @@ type
     fsregion: UTF8String;
     fscredential_file: UTF8String;
   private
-      function getsecret_key: UTF8String;
-      procedure setsecret_key(value: UTF8String);
-      function getaccess_key: UTF8String;
-      procedure setaccess_key(value: UTF8String);
-      function getregion: UTF8String;
-      procedure setregion(value: UTF8String);
-      function getprofile: UTF8String;
-      procedure setprofile(value: UTF8String);
-      function getcredential_file: UTF8String;
-      procedure setcredential_file(value: UTF8String);
+    function getsecret_key: UTF8String;
+    procedure setsecret_key(value: UTF8String);
+    function getaccess_key: UTF8String;
+    procedure setaccess_key(value: UTF8String);
+    function getregion: UTF8String;
+    procedure setregion(value: UTF8String);
+    function getprofile: UTF8String;
+    procedure setprofile(value: UTF8String);
+    function getcredential_file: UTF8String;
+    procedure setcredential_file(value: UTF8String);
 
-      function GetEnvVariableValue(const aVariablename: string): string;
-    public
-      property profile: UTF8String read getprofile write setprofile;
-      property credential_file: UTF8String read getcredential_file write setcredential_file;
-      property region: UTF8String read getregion write setregion;
-      property secret_key: UTF8String read getsecret_key write setsecret_key;
-      property access_key: UTF8String read getaccess_key write setaccess_key;
+    function GetEnvVariableValue(const aVariablename: string): string;
+   public
+     property profile: UTF8String read getprofile write setprofile;
+     property credential_file: UTF8String read getcredential_file write setcredential_file;
+     property region: UTF8String read getregion write setregion;
+     property secret_key: UTF8String read getsecret_key write setsecret_key;
+     property access_key: UTF8String read getaccess_key write setaccess_key;
 
-      procedure GetEnvironmentVariables;
-   end;
+     procedure GetEnvironmentVariables;
+  end;
 
 
 implementation

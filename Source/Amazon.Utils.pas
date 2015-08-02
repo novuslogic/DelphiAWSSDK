@@ -16,6 +16,7 @@ function BytesToHex(const Bytes: array of byte): string;
 function HexToBytes(const S: String): TidBytes;
 function HashSHA256(aStr: String): String;
 function GetAWSUserDir: UTF8String;
+function GetAWSHost(aendpoint: UTF8String): UTF8String;
 
 implementation
 
@@ -116,7 +117,20 @@ begin
 
 end;
 
+function GetAWSHost(aendpoint: UTF8String): UTF8String;
+var
+   fsnewhost: UTF8String;
+begin
+  fsnewhost := StringReplace(aendpoint, 'http://', '',
+                              [rfReplaceAll, rfIgnoreCase]);
 
+  fsnewhost := StringReplace(fsnewhost, 'https://', '',
+                              [rfReplaceAll, rfIgnoreCase]);
+
+  result := StringReplace(fsnewhost, '/', '',
+                              [rfReplaceAll, rfIgnoreCase]);
+
+end;
 
 
 end.

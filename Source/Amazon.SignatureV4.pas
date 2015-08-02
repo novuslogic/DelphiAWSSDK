@@ -84,7 +84,7 @@ begin
   fscanonical_querystring := '';
 
   fscanonical_headers := 'content-type:' + fscontent_type + char(10) + 'host:' + aRequest.host + char(10)  + 'x-amz-date:' +
-      aRequest.amz_date + char(10)  + 'x-amz-target:' + aRequest.target + char(10);
+      aRequest.amz_date + char(10)  + 'x-amz-target:' + aRequest.targetPrefix + '.' + aRequest.operationName + char(10);
 
   fssigned_headers := 'content-type;host;x-amz-date;x-amz-target';
 
