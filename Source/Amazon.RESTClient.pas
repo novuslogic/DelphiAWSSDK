@@ -3,10 +3,10 @@ unit Amazon.RESTClient;
 interface
 
 uses IdSSLOpenSSL, IPPeerAPI, IdHttp, classes, SysUtils, IdStack, IdGlobal,
-     IPPeerClient;
+     IPPeerClient, Amazon.Interfaces;
 
 type
-  TAmazonRESTClient = class
+  TAmazonRESTClient = class(TInterfacedObject,IAmazonRESTClient)
   private
     fsContent_type: string;
     fiErrorCode: Integer;
@@ -16,6 +16,10 @@ type
 
     function GetResponseCode: Integer;
     function GetResponseText: String;
+    function GetContent_type: string;
+    function GetErrorCode: integer;
+    procedure SetContent_type(value: string);
+    function GetErrorMessage: String;
   public
     constructor Create;
     destructor Destory;
@@ -24,21 +28,11 @@ type
 
     procedure Post(aUrl: string; aRequest: UTF8String; var aResponse: UTF8String);
 
-    property ResponseCode: Integer
-      read GetResponseCode;
-
-    property ResponseText: string
-       read GetResponseText;
-
-    property Content_type: String
-      read fsContent_type
-      write fsContent_type;
-
-    property ErrorCode: Integer
-      read fiErrorCode;
-
-    property ErrorMessage: String
-      read fsErrorMessage;
+    property ResponseCode: Integer read GetResponseCode;
+    property ResponseText: string read GetResponseText;
+    property Content_type: String read GetContent_type write SetContent_type;
+    property ErrorCode: Integer read GetErrorCode;
+    property ErrorMessage: String read GetErrorMessage;
   end;
 
 
@@ -117,6 +111,26 @@ end;
 function TAmazonRESTClient.GetResponseText: String;
 begin
   Result := FIdHttp.ResponseText;
+end;
+
+function TAmazonRESTClient.GetContent_type: string;
+begin
+  result := fsContent_type;
+end;
+
+function TAmazonRESTClient.GetErrorCode: integer;
+begin
+  result := fiErrorCode;
+end;
+
+procedure TAmazonRESTClient.SetContent_type(value: string);
+begin
+  fsContent_type := Value;
+end;
+
+function TAmazonRESTClient.GetErrorMessage: String;
+begin
+  result := fsErrorMessage;
 end;
 
 

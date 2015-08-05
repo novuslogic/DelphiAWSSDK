@@ -3,9 +3,41 @@ unit Amazon.Interfaces;
 interface
 
 type
+  IAmazonRESTClient = interface
+  ['{E6CD9C73-6C92-4996-AEC3-3EC836629E6D}']
+    function GetResponseCode: Integer;
+    function GetResponseText: String;
+    function GetContent_type: string;
+    function GetErrorCode: integer;
+    procedure SetContent_type(value: string);
+    function GetErrorMessage: String;
+
+    procedure AddHeader(aName, aValue: UTF8String);
+
+    procedure Post(aUrl: string; aRequest: UTF8String; var aResponse: UTF8String);
+
+    property ResponseCode: Integer read GetResponseCode;
+    property ResponseText: string read GetResponseText;
+    property Content_type: String read GetContent_type write SetContent_type;
+    property ErrorCode: Integer read GetErrorCode;
+    property ErrorMessage: String read GetErrorMessage;
+  end;
+
   IAmazonClient = interface
   ['{24BF1E03-A208-4F7D-9FC7-875BC33D339F}']
+  end;
 
+  IAmazonResponse = interface
+  ['{022460F3-2D8A-4784-9207-825242851A12}']
+    procedure setresponsecode(value: integer);
+    procedure setreponsetext(value: UTF8String);
+    procedure setreponse(value: UTF8String);
+    function getresponsecode: integer;
+    function getreponsetext: UTF8String;
+    function getreponse: UTF8String;
+    property ResponseText: UTF8String read getreponsetext write setreponsetext;
+    property ResponseCode: Integer read getresponsecode write setresponsecode;
+    property Response: UTF8String read getreponse write setreponse;
   end;
 
   IAmazonRequest = interface
@@ -15,6 +47,7 @@ type
     function getaccess_key: UTF8String;
     procedure setaccess_key(value: UTF8String);
 
+    function gettarget: UTF8String;
     function gettargetPrefix: UTF8String;
     procedure settargetPrefix(value: UTF8String);
     function getservice: UTF8String;
@@ -31,6 +64,8 @@ type
     procedure setendpoint(value: UTF8String);
     function getoperationName: UTF8String;
     procedure setoperationName(value: UTF8String);
+    function getauthorization_header: UTF8String;
+    procedure setauthorization_header(value: UTF8String);
 
     function getrequest_parameters: UTF8String;
     procedure setrequest_parameters(value: UTF8String);
@@ -47,6 +82,10 @@ type
 
     property amz_date: UTF8String read getamz_date write setamz_date;
     property date_stamp: UTF8String read getdate_stamp write setdate_stamp;
+
+    property target: UTF8String read gettarget;
+
+    property authorization_header: UTF8String read getauthorization_header write setauthorization_header;
 
     property request_parameters: UTF8String read getrequest_parameters write setrequest_parameters;
   end;

@@ -7,6 +7,7 @@ Uses Amazon.Interfaces;
 type
   TAmazonRequest = class(TInterfacedObject, IAmazonRequest)
   private
+    fsAuthorization_header: UTF8String;
     fsamz_date: UTF8String;
     fsdate_stamp: UTF8String;
     fssecret_key: UTF8String;
@@ -19,6 +20,7 @@ type
     fshost: UTF8String;
     fsoperationName: UTF8String;
   protected
+    function gettarget: UTF8String;
     function getsecret_key: UTF8String;
     procedure setsecret_key(value: UTF8String);
     function getaccess_key: UTF8String;
@@ -41,6 +43,8 @@ type
     procedure setdate_stamp(value: UTF8String);
     function getoperationName: UTF8String;
     procedure setoperationName(value: UTF8String);
+    function getauthorization_header: UTF8String;
+    procedure setauthorization_header(value: UTF8String);
   public
     property secret_key: UTF8String read getsecret_key write setsecret_key;
     property access_key: UTF8String read getaccess_key write setaccess_key;
@@ -56,7 +60,9 @@ type
 
     property amz_date: UTF8String read getamz_date write setamz_date;
     property date_stamp: UTF8String read getdate_stamp write setdate_stamp;
+    property authorization_header: UTF8String read getauthorization_header write setauthorization_header;
 
+    property target: UTF8String read gettarget;
   end;
 
 implementation
@@ -171,5 +177,23 @@ procedure TAmazonRequest.setoperationName(value: UTF8String);
 begin
   fsoperationName := Value;
 end;
+
+procedure TAmazonRequest.setauthorization_header(value: UTF8String);
+begin
+  fsAuthorization_header := value;
+end;
+
+function TAmazonRequest.getauthorization_header;
+begin
+  result := fsAuthorization_header;
+end;
+
+function TAmazonRequest.gettarget: UTF8String;
+begin
+  result := targetPrefix + '.' + operationName;
+end;
+
+
+
 
 end.
