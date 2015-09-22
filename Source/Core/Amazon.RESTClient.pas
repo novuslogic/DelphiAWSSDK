@@ -83,23 +83,17 @@ begin
     FSource.Free;
 
   except
-    on E: EIdHTTPProtocolException do
+    on E: EIPHTTPProtocolExceptionPeer do
     begin
       fiErrorCode := E.ErrorCode;
       fsErrorMessage := E.ErrorMessage;
 
-      if E.ErrorCode = 404 then
-        exit;
-
-    end;
-    on E: EIdSocketError do
-    begin
-      fiErrorCode := E.LastError;
-      fsErrorMessage := E.Message;
+      aResponse := fsErrorMessage;
 
       FIdHttp.Disconnect;
 
     end;
+
   end;
 end;
 
