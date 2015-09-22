@@ -4,7 +4,7 @@ interface
 
 uses Classes,IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils, System.DateUtils, idGlobal,
      IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
-     Windows;
+     Windows ;
 
 
 
@@ -17,8 +17,17 @@ function HexToBytes(const S: String): TidBytes;
 function HashSHA256(aStr: String): String;
 function GetAWSUserDir: UTF8String;
 function GetAWSHost(aendpoint: UTF8String): UTF8String;
+function DoubleQuotedStr(const S: UTF8String): UTF8String;
+
 
 implementation
+
+function DoubleQuotedStr(const S: UTF8String): UTF8String;
+begin
+  Result := S;
+  Result := '"' + Result + '"';
+end;
+
 
 function DateTimeToISO8601(const aDateTime: TDateTime): string;
 Var
@@ -131,6 +140,8 @@ begin
                               [rfReplaceAll, rfIgnoreCase]);
 
 end;
+
+
 
 
 end.
