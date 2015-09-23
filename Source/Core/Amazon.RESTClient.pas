@@ -48,7 +48,8 @@ begin
   FIdHttp.IOHandler := PeerFactory.CreatePeer('', IIPSSLIOHandlerSocketOpenSSL, nil) as IIPSSLIOHandlerSocketOpenSSL;
 
   FIdHttp.Request.CustomHeaders.FoldLines := false;
-end;
+
+end;
 
 destructor TAmazonRESTClient.Destory;
 begin
@@ -88,7 +89,7 @@ begin
       fiErrorCode := E.ErrorCode;
       fsErrorMessage := E.ErrorMessage;
 
-      aResponse := fsErrorMessage;
+      if Trim(aResponse) = '' then aResponse := fsErrorMessage;
 
       FIdHttp.Disconnect;
 
@@ -96,7 +97,8 @@ begin
 
   end;
 end;
-
+
+
 function TAmazonRESTClient.GetResponseCode: Integer;
 begin
   Result := FIdHttp.ResponseCode;
