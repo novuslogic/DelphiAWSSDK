@@ -3,7 +3,8 @@ unit Amazon.Client;
 interface
 
 uses Amazon.Interfaces,  System.SysUtils, Amazon.Credentials,
-     Amazon.Utils, Amazon.Response;
+     Amazon.Utils, Amazon.Response,System.Rtti, Amazon.RESTClient ,
+     Amazon.Request, Amazon.SignatureV4;
 
 type
   TAmazonClient = class(TInterfacedObject,IAmazonClient)
@@ -14,7 +15,7 @@ type
     fshost: UTF8String;
     fsAuthorization_header: UTF8String;
 
-    procedure InitClient(aprofile: UTF8String;asecret_key: UTF8String; aaccess_key: UTF8String);
+
   private
     function getsecret_key: UTF8String;
     procedure setsecret_key(value: UTF8String);
@@ -39,6 +40,8 @@ type
 
     destructor Destory;
 
+    procedure InitClient(aprofile: UTF8String;asecret_key: UTF8String; aaccess_key: UTF8String); virtual;
+
     property profile: UTF8String read getprofile write setprofile;
     property credential_file: UTF8String read getcredential_file write setcredential_file;
     property region: UTF8String read getregion write setregion;
@@ -48,6 +51,8 @@ type
     property endpoint: UTF8String read getendpoint write setendpoint;
     property service: UTF8String read getservice write setservice;
     property host: UTF8String read gethost write sethost;
+
+    function MakeRequest(aAmazonRequest: IAmazonRequest): IAmazonResponse;
 
     function execute(aAmazonRequest: IAmazonRequest; aAmazonSignature: IAmazonSignature; aAmazonRESTClient: IAmazonRESTClient): IAmazonResponse; virtual;
   end;
@@ -76,7 +81,7 @@ begin
 end;
 
 
-procedure TAmazonClient.InitClient;
+procedure TAmazonClient.InitClient(aprofile: UTF8String;asecret_key: UTF8String; aaccess_key: UTF8String);
 begin
   FAmazonCredentials := tAmazonCredentials.Create;
 
@@ -240,9 +245,6 @@ begin
 
     aAmazonRESTClient.Post(endpoint, aAmazonRequest.request_parameters,  fsresponse);
 
-
-
-
   Finally
     FAmazonResponse := tAmazonResponse.Create;
 
@@ -256,5 +258,22 @@ begin
 
 
 end;
+
+function TAmazonClient.MakeRequest(aAmazonRequest: IAmazonRequest): IAmazonResponse;
+var
+  FAmazonRESTClient: TAmazonRESTClient;
+  FAmazonSignatureV4: TAmazonSignatureV4;
+begin
+  Try
+    FAmazonSignatureV4 := TAmazonSignatureV4.Create;
+    FAmazonRESTClient := TAmazonRESTClient.Create;
+
+    Result := execute(aAmazonRequest, fAmazonSignatureV4, FAmazonRESTClient);
+  Finally
+    FAmazonSignatureV4 := NIL;
+    FAmazonRESTClient := NIL;
+  End;
+end;
+
 
 end.
