@@ -4,7 +4,7 @@ interface
 
 uses Classes,IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils, System.DateUtils, idGlobal,
      IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
-     Windows ;
+     Windows, Data.DBXJSONReflect, Data.DBXJSON   ;
 
 
 
@@ -18,7 +18,7 @@ function HashSHA256(aStr: String): String;
 function GetAWSUserDir: UTF8String;
 function GetAWSHost(aendpoint: UTF8String): UTF8String;
 function DoubleQuotedStr(const S: UTF8String): UTF8String;
-
+function DeepCopy(aValue: TObject): TObject;
 
 implementation
 
@@ -141,6 +141,29 @@ begin
 
 end;
 
+
+function DeepCopy(aValue: TObject): TObject;
+var
+  MarshalObj: TJSONMarshal;
+  UnMarshalObj: TJSONUnMarshal;
+  JSONValue: TJSONValue;
+begin
+  Result:= nil;
+  MarshalObj := TJSONMarshal.Create;
+  UnMarshalObj := TJSONUnMarshal.Create;
+  try
+    JSONValue := MarshalObj.Marshal(aValue);
+    try
+      if Assigned(JSONValue) then
+        Result:= UnMarshalObj.Unmarshal(JSONValue);
+    finally
+      JSONValue.Free;
+    end;
+  finally
+    MarshalObj.Free;
+    UnMarshalObj.Free;
+  end;
+end;
 
 
 

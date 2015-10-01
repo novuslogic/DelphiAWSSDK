@@ -27,6 +27,10 @@ type
   ['{24BF1E03-A208-4F7D-9FC7-875BC33D339F}']
   end;
 
+  IAmazonMarshaller = interface
+  ['{132F6BC1-8F07-4A2E-B763-02C4CF66008C}']
+  end;
+
   IAmazonResponse = interface
   ['{022460F3-2D8A-4784-9207-825242851A12}']
     procedure setresponsecode(value: integer);
