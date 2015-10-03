@@ -106,7 +106,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\..\SDK\Amazon.DynamoDB.pas"/>
+        <DCCReference Include="..\..\..\SDK\DynamoDB\Amazon.DynamoDB.pas"/>
         <DCCReference Include="..\..\..\Core\Amazon.Client.pas"/>
         <DCCReference Include="..\..\..\Core\Amazon.Interfaces.pas"/>
         <DCCReference Include="..\..\..\Core\Amazon.Credentials.pas"/>

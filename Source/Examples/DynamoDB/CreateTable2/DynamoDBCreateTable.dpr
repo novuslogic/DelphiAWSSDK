@@ -6,7 +6,7 @@ program DynamoDBCreateTable;
 
 uses
   System.SysUtils,
-  Amazon.DynamoDB in '..\..\..\SDK\Amazon.DynamoDB.pas',
+  Amazon.DynamoDB in '..\..\..\SDK\DynamoDB\Amazon.DynamoDB.pas',
   Amazon.Client in '..\..\..\Core\Amazon.Client.pas',
   Amazon.Interfaces in '..\..\..\Core\Amazon.Interfaces.pas',
   Amazon.Credentials in '..\..\..\Core\Amazon.Credentials.pas',
