@@ -6,17 +6,17 @@ program DynamoDBCreateTable;
 
 uses
   System.SysUtils,
-  Amazon.DynamoDB in '..\..\..\SDK\DynamoDB\Amazon.DynamoDB.pas',
-  Amazon.Client in '..\..\..\Core\Amazon.Client.pas',
-  Amazon.Interfaces in '..\..\..\Core\Amazon.Interfaces.pas',
-  Amazon.Credentials in '..\..\..\Core\Amazon.Credentials.pas',
-  Amazon.Environment in '..\..\..\Core\Amazon.Environment.pas',
-  Amazon.Utils in '..\..\..\Core\Amazon.Utils.pas',
-  Amazon.Request in '..\..\..\Core\Amazon.Request.pas',
-  Amazon.Response in '..\..\..\Core\Amazon.Response.pas',
-  Amazon.RESTClient in '..\..\..\Core\Amazon.RESTClient.pas',
-  Amazon.SignatureV4 in '..\..\..\Core\Amazon.SignatureV4.pas',
-  Amazon.Marshaller in '..\..\..\Core\Amazon.Marshaller.pas';
+  Amazon.Client in '..\..\..\Source\Core\Amazon.Client.pas',
+  Amazon.Interfaces in '..\..\..\Source\Core\Amazon.Interfaces.pas',
+  Amazon.Credentials in '..\..\..\Source\Core\Amazon.Credentials.pas',
+  Amazon.Environment in '..\..\..\Source\Core\Amazon.Environment.pas',
+  Amazon.Utils in '..\..\..\Source\Core\Amazon.Utils.pas',
+  Amazon.Request in '..\..\..\Source\Core\Amazon.Request.pas',
+  Amazon.Response in '..\..\..\Source\Core\Amazon.Response.pas',
+  Amazon.RESTClient in '..\..\..\Source\Core\Amazon.RESTClient.pas',
+  Amazon.SignatureV4 in '..\..\..\Source\Core\Amazon.SignatureV4.pas',
+  Amazon.Marshaller in '..\..\..\Source\Core\Amazon.Marshaller.pas',
+  Amazon.DynamoDB in '..\..\..\Source\SDK\DynamoDB\Amazon.DynamoDB.pas';
 
 Var
   FAmazonDynamoDBClient: TAmazonDynamoDBClient;

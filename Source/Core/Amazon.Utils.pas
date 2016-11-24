@@ -1,10 +1,16 @@
+{$I ..\DelphiAWSSDK.inc}
+{$I ..\DelphiVersions.Inc}
 unit Amazon.Utils;
 
 interface
 
 uses Classes,IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils, System.DateUtils, idGlobal,
      IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
-     Windows, Data.DBXJSONReflect, Data.DBXJSON   ;
+     Windows, Data.DBXJSONReflect,
+     {$IFDEF DELPHIXE8_UP}
+     System.JSON,
+     {$ENDIF}
+     Data.DBXJSON;
 
 
 

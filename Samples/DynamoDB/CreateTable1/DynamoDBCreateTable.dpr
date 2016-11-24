@@ -7,15 +7,17 @@
 uses
   System.SysUtils,
   Classes,
-  Amazon.SignatureV4 in '..\..\..\Core\Amazon.SignatureV4.pas',
-  Amazon.RESTClient in '..\..\..\Core\Amazon.RESTClient.pas',
-  Amazon.Request in '..\..\..\Core\Amazon.Request.pas',
-  Amazon.Interfaces in '..\..\..\Core\Amazon.Interfaces.pas',
-  Amazon.Client in '..\..\..\Core\Amazon.Client.pas',
-  Amazon.Credentials in '..\..\..\Core\Amazon.Credentials.pas',
-  Amazon.Environment in '..\..\..\Core\Amazon.Environment.pas',
-  Amazon.Response in '..\..\..\Core\Amazon.Response.pas',
-  Amazon.Utils in '..\..\..\Core\Amazon.Utils.pas';
+  Amazon.Client in '..\..\..\Source\Core\Amazon.Client.pas',
+  Amazon.Interfaces in '..\..\..\Source\Core\Amazon.Interfaces.pas',
+  Amazon.Credentials in '..\..\..\Source\Core\Amazon.Credentials.pas',
+  Amazon.Environment in '..\..\..\Source\Core\Amazon.Environment.pas',
+  Amazon.Utils in '..\..\..\Source\Core\Amazon.Utils.pas',
+  Amazon.Request in '..\..\..\Source\Core\Amazon.Request.pas',
+  Amazon.Response in '..\..\..\Source\Core\Amazon.Response.pas',
+  Amazon.RESTClient in '..\..\..\Source\Core\Amazon.RESTClient.pas',
+  Amazon.SignatureV4 in '..\..\..\Source\Core\Amazon.SignatureV4.pas',
+  Amazon.Marshaller in '..\..\..\Source\Core\Amazon.Marshaller.pas';
+
 
 var
   FAmazonRESTClient: TAmazonRESTClient;
@@ -58,18 +60,12 @@ begin
 
       Writeln('Response:' + FAmazonResponse.Response);
 
-
-
-
       Writeln('Press [enter] to finish.');
       readln;
     Finally
       FAmazonClient.Free;
       FAmazonResponse := NIL;
     End;
-
-
-
 
   except
     on E: Exception do
