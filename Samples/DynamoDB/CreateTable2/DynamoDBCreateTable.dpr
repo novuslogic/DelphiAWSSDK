@@ -13,12 +13,13 @@ uses
   Amazon.Utils in '..\..\..\Source\Core\Amazon.Utils.pas',
   Amazon.Request in '..\..\..\Source\Core\Amazon.Request.pas',
   Amazon.Response in '..\..\..\Source\Core\Amazon.Response.pas',
-  Amazon.RESTClient in '..\..\..\Source\Core\Amazon.RESTClient.pas',
+  Amazon.IndyRESTClient in '..\..\..\Source\Core\Amazon.IndyRESTClient.pas',
   Amazon.SignatureV4 in '..\..\..\Source\Core\Amazon.SignatureV4.pas',
   Amazon.Marshaller in '..\..\..\Source\Core\Amazon.Marshaller.pas',
   Amazon.DynamoDB in '..\..\..\Source\SDK\DynamoDB\Amazon.DynamoDB.pas';
 
 Var
+  FAmazonRESTClient : TAmazonIndyRESTClient;
   FAmazonDynamoDBClient: TAmazonDynamoDBClient;
   FsTableName: String;
   FCreateTableRequest:  TCreateTableRequest;
@@ -28,8 +29,10 @@ begin
     Try
       Writeln('DynamoDB API (CreateTable) using Amazon.DynamoDB class');
 
+      FAmazonRESTClient := TAmazonIndyRESTClient.Create;
 
-      FAmazonDynamoDBClient := TAmazonDynamoDBClient.Create;
+      FAmazonDynamoDBClient := TAmazonDynamoDBClient.Create(FAmazonRESTClient);
+
       fsTableName := 'ProductCatalog';
 
       FAmazonDynamoDBClient.endpoint := 'https://dynamodb.ap-southeast-2.amazonaws.com/';
@@ -57,6 +60,8 @@ begin
       Writeln('Press [enter] to finish.');
       readln;
     Finally
+      FAmazonRESTClient := NIL;
+
       FAmazonDynamoDBClient.Free;
 
       FAmazonDynamoDBResponse.Free;

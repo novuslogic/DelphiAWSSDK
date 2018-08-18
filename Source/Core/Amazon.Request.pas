@@ -49,24 +49,27 @@ type
     property secret_key: UTF8String read getsecret_key write setsecret_key;
     property access_key: UTF8String read getaccess_key write setaccess_key;
 
-    property targetPrefix: UTF8String read gettargetPrefix write settargetPrefix;
-    property operationName: UTF8String read getoperationName write setoperationName;
+    property targetPrefix: UTF8String read gettargetPrefix
+      write settargetPrefix;
+    property operationName: UTF8String read getoperationName
+      write setoperationName;
     property service: UTF8String read getservice write setservice;
     property endpoint: UTF8String read getendpoint write setendpoint;
 
     property host: UTF8String read gethost write sethost;
     property region: UTF8String read getregion write setregion;
-    property request_parameters: UTF8String read getrequest_parameters write setrequest_parameters;
+    property request_parameters: UTF8String read getrequest_parameters
+      write setrequest_parameters;
 
     property amz_date: UTF8String read getamz_date write setamz_date;
     property date_stamp: UTF8String read getdate_stamp write setdate_stamp;
-    property authorization_header: UTF8String read getauthorization_header write setauthorization_header;
+    property authorization_header: UTF8String read getauthorization_header
+      write setauthorization_header;
 
     property target: UTF8String read gettarget;
   end;
 
 implementation
-
 
 function TAmazonRequest.getsecret_key: UTF8String;
 begin
@@ -80,7 +83,7 @@ end;
 
 function TAmazonRequest.getrequest_parameters: UTF8String;
 begin
-  result := fsrequest_parameters;
+  Result := fsrequest_parameters;
 end;
 
 procedure TAmazonRequest.setrequest_parameters(value: UTF8String);
@@ -150,12 +153,12 @@ end;
 
 function TAmazonRequest.getamz_date: UTF8String;
 begin
-  result := fsamz_date;
+  Result := fsamz_date;
 end;
 
 procedure TAmazonRequest.setamz_date(value: UTF8String);
 begin
-  fsamz_date := Value;
+  fsamz_date := value;
 end;
 
 function TAmazonRequest.getdate_stamp: UTF8String;
@@ -165,7 +168,7 @@ end;
 
 procedure TAmazonRequest.setdate_stamp(value: UTF8String);
 begin
-  fsdate_stamp := Value;
+  fsdate_stamp := value;
 end;
 
 function TAmazonRequest.getoperationName: UTF8String;
@@ -175,7 +178,7 @@ end;
 
 procedure TAmazonRequest.setoperationName(value: UTF8String);
 begin
-  fsoperationName := Value;
+  fsoperationName := value;
 end;
 
 procedure TAmazonRequest.setauthorization_header(value: UTF8String);
@@ -185,15 +188,12 @@ end;
 
 function TAmazonRequest.getauthorization_header;
 begin
-  result := fsAuthorization_header;
+  Result := fsAuthorization_header;
 end;
 
 function TAmazonRequest.gettarget: UTF8String;
 begin
-  result := targetPrefix + '.' + operationName;
+  Result := targetPrefix + '.' + operationName;
 end;
-
-
-
 
 end.

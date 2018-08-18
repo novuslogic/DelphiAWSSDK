@@ -14,13 +14,12 @@ uses
   Amazon.Utils in '..\..\..\Source\Core\Amazon.Utils.pas',
   Amazon.Request in '..\..\..\Source\Core\Amazon.Request.pas',
   Amazon.Response in '..\..\..\Source\Core\Amazon.Response.pas',
-  Amazon.RESTClient in '..\..\..\Source\Core\Amazon.RESTClient.pas',
+  Amazon.IndyRESTClient in '..\..\..\Source\Core\Amazon.IndyRESTClient.pas',
   Amazon.SignatureV4 in '..\..\..\Source\Core\Amazon.SignatureV4.pas',
   Amazon.Marshaller in '..\..\..\Source\Core\Amazon.Marshaller.pas';
 
-
 var
-  FAmazonRESTClient: TAmazonRESTClient;
+  FAmazonRESTClient: TAmazonIndyRESTClient;
   FAmazonRequest: TAmazonRequest;
   FAmazonSignatureV4: TAmazonSignatureV4;
   FAmazonClient: TAmazonClient;
@@ -36,7 +35,7 @@ begin
 
       FAmazonRequest := TAmazonRequest.Create;
       FAmazonSignatureV4 := TAmazonSignatureV4.Create;
-      FAmazonRESTClient := TAmazonRESTClient.Create;
+      FAmazonRESTClient := TAmazonIndyRESTClient.Create;
 
 
       FAmazonRequest.request_parameters :=  '{' +
@@ -60,12 +59,18 @@ begin
 
       Writeln('Response:' + FAmazonResponse.Response);
 
+
+
+
       Writeln('Press [enter] to finish.');
       readln;
     Finally
       FAmazonClient.Free;
       FAmazonResponse := NIL;
     End;
+
+
+
 
   except
     on E: Exception do

@@ -25,10 +25,12 @@ begin
 
     credential_file := GetAWSUserDir;
 
-    if credential_file <> '' then credential_file := credential_file + '\' + aws_defaultcredential_file;
+    if credential_file <> '' then
+      credential_file := credential_file + '\' + aws_defaultcredential_file;
 
   Finally
-    if Not fileExists(credential_file) then result := False;
+    if Not fileExists(credential_file) then
+      result := False;
   End;
 end;
 
@@ -36,21 +38,20 @@ procedure TAmazonCredentials.Loadcredential_file;
 var
   FIniFile: TIniFile;
 begin
-  Try
-   FIniFile := TIniFile.Create(credential_file);
+  if Not fileExists(credential_file) then
+    Exit;
 
-   access_key := FIniFile.Readstring(profile,'aws_access_key_id', access_key) ;
-   secret_key := FIniFile.Readstring(profile,'aws_secret_access_key', secret_key) ;
-   region := FIniFile.Readstring(profile,'aws_region', region) ;
+  Try
+    FIniFile := TIniFile.Create(credential_file);
+
+    access_key := FIniFile.Readstring(profile, 'aws_access_key_id', access_key);
+    secret_key := FIniFile.Readstring(profile, 'aws_secret_access_key',
+      secret_key);
+    region := FIniFile.Readstring(profile, 'aws_region', region);
 
   Finally
     FIniFile.Free;
   End;
-
-
-
 end;
-
-
 
 end.

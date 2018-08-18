@@ -9,12 +9,12 @@ type
   private
     firesponsecode: Integer;
     fsreponsetext: UTF8String;
-    fsresponse: UTF8STring;
+    fsresponse: UTF8String;
   protected
-    procedure setresponsecode(value: integer);
+    procedure setresponsecode(value: Integer);
     procedure setreponsetext(value: UTF8String);
     procedure setreponse(value: UTF8String);
-    function getresponsecode: integer;
+    function getresponsecode: Integer;
     function getreponsetext: UTF8String;
     function getreponse: UTF8String;
   public
@@ -23,11 +23,9 @@ type
     property Response: UTF8String read getreponse write setreponse;
   end;
 
-
 implementation
 
-
-procedure TAmazonResponse.setresponsecode(value: integer);
+procedure TAmazonResponse.setresponsecode(value: Integer);
 begin
   firesponsecode := value;
 end;
@@ -42,7 +40,7 @@ begin
   fsresponse := value;
 end;
 
-function TAmazonResponse.getresponsecode: integer;
+function TAmazonResponse.getresponsecode: Integer;
 begin
   result := firesponsecode;
 end;

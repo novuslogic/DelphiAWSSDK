@@ -32,27 +32,26 @@ type
     procedure setcredential_file(value: UTF8String);
 
     function GetEnvVariableValue(const aVariablename: string): string;
-   public
-     property profile: UTF8String read getprofile write setprofile;
-     property credential_file: UTF8String read getcredential_file write setcredential_file;
-     property region: UTF8String read getregion write setregion;
-     property secret_key: UTF8String read getsecret_key write setsecret_key;
-     property access_key: UTF8String read getaccess_key write setaccess_key;
+  public
+    property profile: UTF8String read getprofile write setprofile;
+    property credential_file: UTF8String read getcredential_file
+      write setcredential_file;
+    property region: UTF8String read getregion write setregion;
+    property secret_key: UTF8String read getsecret_key write setsecret_key;
+    property access_key: UTF8String read getaccess_key write setaccess_key;
 
-     procedure GetEnvironmentVariables;
+    procedure GetEnvironmentVariables;
   end;
-
 
 implementation
 
-function TAmazonEnvironment.GetEnvVariableValue(const aVariablename: string): string;
+function TAmazonEnvironment.GetEnvVariableValue(const aVariablename
+  : string): string;
 var
   BufSize: Integer;
 begin
   Result := Trim(GetEnvironmentVariable(aVariablename));
 end;
-
-
 
 procedure TAmazonEnvironment.GetEnvironmentVariables;
 begin
@@ -60,7 +59,7 @@ begin
   fssecret_key := GetEnvVariableValue(AWS_SECRET_ACCESS_KEY);
   fsregion := GetEnvVariableValue(AWS_REGION);
   fscredential_file := GetEnvVariableValue(AWS_CREDENTIAL_FILE);
-  fsProfile := GetEnvVariableValue(AWS_PROFILE);
+  fsprofile := GetEnvVariableValue(AWS_PROFILE);
 end;
 
 function TAmazonEnvironment.getaccess_key: UTF8String;
@@ -112,4 +111,5 @@ procedure TAmazonEnvironment.setcredential_file(value: UTF8String);
 begin
   fscredential_file := value;
 end;
+
 end.
