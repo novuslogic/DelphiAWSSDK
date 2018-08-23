@@ -1,3 +1,7 @@
+23/08/2018
+
+* Update DelphiVerion.inc which includes Delphi 10.2 support
+
 19/08/2018
 
 * Start of the Changelog

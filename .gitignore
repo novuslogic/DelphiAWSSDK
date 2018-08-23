@@ -183,3 +183,9 @@ UpgradeLog*.htm
 FakesAssemblies/
 *.local
 *.identcache
+Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.dpr
+Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.dproj
+Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.res
+Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.stat
+Samples/DynamoDB/CreateTable2/DynamoDBCreateTable.stat
+Source/Core/Amazon.DelphiRESTClient.pas
