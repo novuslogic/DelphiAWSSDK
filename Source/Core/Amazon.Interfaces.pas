@@ -5,6 +5,12 @@ interface
 type
   IAmazonRESTClient = interface
     ['{E6CD9C73-6C92-4996-AEC3-3EC836629E6D}']
+    function GetAccept: string;
+    procedure SetAccept(value: string);
+    function GetAcceptCharset: string;
+    procedure SetAcceptCharset(value: string);
+    function GetUserAgent: string;
+    procedure SetUserAgent(value:string);
     function GetResponseCode: Integer;
     function GetResponseText: String;
     function GetContent_type: string;
@@ -22,6 +28,9 @@ type
     property Content_type: String read GetContent_type write SetContent_type;
     property ErrorCode: Integer read GetErrorCode;
     property ErrorMessage: String read GetErrorMessage;
+    property UserAgent: string read GetUserAgent write SetUserAgent;
+    property AcceptCharset: string read GetAcceptCharset write SetAcceptCharset;
+    property Accept: string read GetAccept write SetAccept;
   end;
 
   IAmazonClient = interface

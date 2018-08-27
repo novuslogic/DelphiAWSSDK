@@ -8,18 +8,26 @@ uses IdSSLOpenSSL, IPPeerAPI, IdHttp, classes, SysUtils, IdStack, IdGlobal,
 type
   TAmazonIndyRestClient = class(TInterfacedObject, IAmazonRestClient)
   private
+    fsAccept: string;
+    fsAcceptCharset: string;
     fsContent_type: string;
     fiErrorCode: Integer;
     fsErrorMessage: String;
-  protected
+    fsUserAgent: string;
     FIdHttp: IIPHTTP;
-
+  protected
+    function GetAcceptCharset: string;
+    procedure SetAcceptCharset(value: string);
     function GetResponseCode: Integer;
     function GetResponseText: String;
     function GetContent_type: string;
     function GetErrorCode: Integer;
     procedure SetContent_type(value: string);
     function GetErrorMessage: String;
+    function GetUserAgent: string;
+    procedure SetUserAgent(value:string);
+    function GetAccept: string;
+    procedure SetAccept(value: string);
   public
     constructor Create;
     destructor Destory;
@@ -34,6 +42,10 @@ type
     property Content_type: String read GetContent_type write SetContent_type;
     property ErrorCode: Integer read GetErrorCode;
     property ErrorMessage: String read GetErrorMessage;
+
+    property UserAgent: string read GetUserAgent write SetUserAgent;
+    property AcceptCharset: string read GetAcceptCharset write SetAcceptCharset;
+    property Accept: string read GetAccept write SetAccept;
   end;
 
 implementation
@@ -75,6 +87,9 @@ begin
     FResponseContent := TStringStream.Create;
 
     FIdHttp.Request.ContentType := Content_type;
+    FIdHttp.Request.UserAgent := UserAgent;
+    FIdHttp.Request.Accept := Accept;
+    FIdHttp.Request.AcceptCharset := AcceptCharset;
 
     FIdHttp.DoPost(aUrl, FSource, FResponseContent);
 
@@ -128,5 +143,56 @@ function TAmazonIndyRestClient.GetErrorMessage: String;
 begin
   Result := fsErrorMessage;
 end;
+
+function TAmazonIndyRestClient.GetUserAgent: string;
+begin
+  if (Trim(fsUserAgent) = '') then
+    begin
+      if Assigned(FIdHttp.Request) then
+        fsUserAgent := FIdHttp.Request.UserAgent;
+    end;
+
+  Result := fsUserAgent;
+end;
+
+procedure TAmazonIndyRestClient.SetUserAgent(value:string);
+begin
+  fsUserAgent := value;
+end;
+
+function TAmazonIndyRestClient.GetAcceptCharset: string;
+begin
+  if Trim(fsAcceptCharset) = '' then
+    begin
+     if Assigned(FIdHttp.Request) then
+       fsAcceptCharset :=  FIdHttp.Request.AcceptCharSet;
+    end;
+
+  Result := fsAcceptCharset;
+end;
+
+procedure TAmazonIndyRestClient.SetAcceptCharset(value:string);
+begin
+  fsAcceptCharset := value;
+end;
+
+
+function TAmazonIndyRestClient.GetAccept: string;
+begin
+  if Trim(fsAcceptCharset) = '' then
+    begin
+     if Assigned(FIdHttp.Request) then
+       fsAccept :=  FIdHttp.Request.Accept;
+    end;
+
+  Result := fsAccept;
+end;
+
+procedure TAmazonIndyRestClient.SetAccept(value:string);
+begin
+  fsAccept := value;
+end;
+
+
 
 end.
