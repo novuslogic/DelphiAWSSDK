@@ -1,1 +1,1 @@
-
+{$I DelphiVersions.Inc}

@@ -8,6 +8,7 @@ uses Classes, IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils,
   IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
   Windows, Data.DBXJSONReflect,
 {$IFDEF DELPHIXE8_UP}
+  System.Hash,
   System.JSON,
 {$ENDIF}
   Data.DBXJSON;
@@ -17,7 +18,12 @@ procedure GetAWSDate_Stamp(const aDateTime: TDateTime;
   var aamz_date, adate_stamp: UTF8String);
 function UTCNow: TDateTime;
 
+
+{$IFDEF DELPHIXE8_UP}
+function HmacSHA256Ex(const AKey: TBytes; aStr: UTF8String): TBytes;
+{$ELSE}
 function HmacSHA256Ex(const AKey: TidBytes; aStr: UTF8String): TidBytes;
+{$ENDIF}
 
 function BytesToHex(const Bytes: array of byte): string;
 function HexToBytes(const S: String): TidBytes;
@@ -71,6 +77,21 @@ begin
   Result := TTimeZone.Local.ToUniversalTime(Now);
 end;
 
+
+
+//GetHMACAsBytes(const AData, AKey: string; AHashVersion: TSHA2Version = TSHA2Version.SHA256): TBytes;
+
+{$IFDEF DELPHIXE8_UP}
+function HmacSHA256Ex(const AKey: TBytes; aStr: UTF8String): TBytes;
+Var
+  FHash: THashSHA2;
+  FData: TBytes;
+begin
+  FHash := THashSHA2.Create(SHA256);
+  FData := BytesOf(aStr);
+  Result := FHash.GetHMACAsBytes(FData, aKey, SHA256);
+end;
+{$ELSE}
 function HmacSHA256Ex(const AKey: TidBytes; aStr: UTF8String): TidBytes;
 Var
   FHMACSHA256: TIdHMACSHA256;
@@ -87,6 +108,8 @@ begin
     FHMACSHA256.Free;
   end;
 end;
+{$ENDIF}
+
 
 function BytesToHex(const Bytes: array of byte): string;
 const
@@ -111,6 +134,36 @@ begin
   SetLength(Result, HexToBin(PChar(S), Pointer(Result), Length(Result)));
 end;
 
+{$IFDEF DELPHIXE8_UP}
+function HashSHA256(aStr: String): String;
+var
+  FHash: THashSHA2;
+  LBytes: TArray<Byte>;
+  FBuffer: PByte;
+  BufLen: Integer;
+  Readed: Integer;
+  FStream: TStringStream;
+begin
+  BufLen := Length(aStr) * (4 * 1024);
+
+  FBuffer  := AllocMem(BufLen);
+  FHash    := THashSHA2.Create;
+  FStream := TStringStream.Create(aStr);
+  try
+    while FStream.Position < FStream.Size do
+    begin
+      Readed := FStream.Read(FBuffer^, BufLen);
+      if Readed > 0 then
+        FHash.update(FBuffer^, Readed);
+    end;
+  finally
+    FStream.Free;
+    FreeMem(FBuffer);
+  end;
+
+  Result := FHash.HashAsString;
+end;
+{$ELSE}
 function HashSHA256(aStr: String): String;
 var
   FHashSHA256: TIdHashSHA256;
@@ -126,6 +179,8 @@ begin
     FHashSHA256.Free;
   end;
 end;
+{$ENDIF}
+
 
 function GetAWSUserDir: UTF8String;
 begin

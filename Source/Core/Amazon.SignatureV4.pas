@@ -1,3 +1,4 @@
+{$I ..\DelphiVersions.Inc}
 unit Amazon.SignatureV4;
 
 interface
@@ -10,10 +11,22 @@ const
   awsSIGN = 'AWS4';
   awsContent_typeV4 = 'application/x-amz-json-1.0';
 
+
+{$IFDEF DELPHIXE8_UP}
+function GetSignatureV4Key(aSecret_Access_Key, adateStamp, aregionName,  aserviceName: UTF8String): TBytes;
+{$ELSE}
 function GetSignatureV4Key(aSecret_Access_Key, adateStamp, aregionName,
-  aserviceName: UTF8String): TidBytes;
+    aserviceName: UTF8String): TidBytes;
+{$ENDIF}
+
+
+{$IFDEF DELPHIXE8_UP}
+function GetSignatureV4(aSignatureV4Key: TBytes; aString_to_sign: UTF8String)
+  : UTF8String;
+{$ELSE}
 function GetSignatureV4(aSignatureV4Key: TidBytes; aString_to_sign: UTF8String)
   : UTF8String;
+{$ENDIF}
 
 type
   TAmazonSignatureV4 = class(TInterfacedObject, IAmazonSignature)
@@ -31,7 +44,13 @@ type
     fsalgorithm: UTF8String;
     fscredential_scope: UTF8String;
     fsString_to_sign: UTF8String;
+
+    {$IFDEF DELPHIXE8_UP}
+    fSignatureV4Key: TBytes;
+    {$ELSE}
     fSignatureV4Key: TidBytes;
+    {$ENDIF}
+
     fsSignature: UTF8String;
     fsauthorization_header: UTF8String;
 
@@ -48,6 +67,25 @@ type
 
 implementation
 
+{$IFDEF DELPHIXE8_UP}
+function GetSignatureV4Key(aSecret_Access_Key, adateStamp, aregionName,
+  aserviceName: UTF8String): TBytes;
+Var
+  kService: TBytes;
+  kRegion: TBytes;
+  kSecret: TBytes;
+  kDate: TBytes;
+  kSigning: TBytes;
+begin
+  kSecret := BytesOf(UTF8Encode(awsSIGN + aSecret_Access_Key));
+  kDate := HmacSHA256Ex(kSecret, adateStamp);
+  kRegion := HmacSHA256Ex(kDate, aregionName);
+  kService := HmacSHA256Ex(kRegion, aserviceName);
+  kSigning := HmacSHA256Ex(kService, 'aws4_request');
+
+  Result := kSigning;
+end;
+{$ELSE}
 function GetSignatureV4Key(aSecret_Access_Key, adateStamp, aregionName,
   aserviceName: UTF8String): TidBytes;
 Var
@@ -65,12 +103,22 @@ begin
 
   Result := kSigning;
 end;
+{$ENDIF}
 
+
+{$IFDEF DELPHIXE8_UP}
+function GetSignatureV4(aSignatureV4Key: TBytes; aString_to_sign: UTF8String)
+  : UTF8String;
+begin
+  Result := BytesToHex(HmacSHA256Ex(aSignatureV4Key, aString_to_sign));
+end;
+{$ELSE}
 function GetSignatureV4(aSignatureV4Key: TidBytes; aString_to_sign: UTF8String)
   : UTF8String;
 begin
   Result := BytesToHex(HmacSHA256Ex(aSignatureV4Key, aString_to_sign));
 end;
+{$ENDIF}
 
 procedure TAmazonSignatureV4.Sign(aRequest: IAmazonRequest);
 begin

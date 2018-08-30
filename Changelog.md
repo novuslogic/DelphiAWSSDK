@@ -1,3 +1,9 @@
+30/08/2018
+
+* THashSHA2 supported in unit Amazon.Utils for Delphi XE8 and up.
+* TidBytes reference change to Tbytes in unit Amazon.SignatureV4 for Delphi XE8 and up.
+* Fixed support for Delphi XE to Delphi XE7
+
 28/08/2018
 
 * New RESTClient class TAmazonDelphiRestClient based on Delphi TRESTClient and TRESTHTTP. Note TAmazonSignatureV4 still requires OpenSSL Library

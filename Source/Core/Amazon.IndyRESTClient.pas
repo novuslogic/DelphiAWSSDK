@@ -1,3 +1,4 @@
+{$I ..\DelphiVersions.Inc}
 unit Amazon.IndyRestClient;
 
 interface
@@ -87,9 +88,15 @@ begin
     FResponseContent := TStringStream.Create;
 
     FIdHttp.Request.ContentType := Content_type;
+    {$IFDEF DELPHIXE8_UP}
     FIdHttp.Request.UserAgent := UserAgent;
+    {$ENDIF}
+
+
     FIdHttp.Request.Accept := Accept;
+    {$IFDEF DELPHIXE8_UP}
     FIdHttp.Request.AcceptCharset := AcceptCharset;
+    {$ENDIF}
 
     FIdHttp.DoPost(aUrl, FSource, FResponseContent);
 
@@ -148,8 +155,10 @@ function TAmazonIndyRestClient.GetUserAgent: string;
 begin
   if (Trim(fsUserAgent) = '') then
     begin
+      {$IFDEF DELPHIXE8_UP}
       if Assigned(FIdHttp.Request) then
         fsUserAgent := FIdHttp.Request.UserAgent;
+      {$ENDIF}
     end;
 
   Result := fsUserAgent;
@@ -164,8 +173,10 @@ function TAmazonIndyRestClient.GetAcceptCharset: string;
 begin
   if Trim(fsAcceptCharset) = '' then
     begin
-     if Assigned(FIdHttp.Request) then
+      {$IFDEF DELPHIXE8_UP}
+      if Assigned(FIdHttp.Request) then
        fsAcceptCharset :=  FIdHttp.Request.AcceptCharSet;
+      {$ENDIF}
     end;
 
   Result := fsAcceptCharset;
