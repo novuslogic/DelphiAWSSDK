@@ -6,7 +6,7 @@ interface
 uses Classes, IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils,
   System.DateUtils, idGlobal,
   IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
-  Windows, Data.DBXJSONReflect,
+  Data.DBXJSONReflect,
 {$IFDEF DELPHIXE8_UP}
   System.Hash,
   System.JSON,
@@ -77,9 +77,6 @@ begin
   Result := TTimeZone.Local.ToUniversalTime(Now);
 end;
 
-
-
-//GetHMACAsBytes(const AData, AKey: string; AHashVersion: TSHA2Version = TSHA2Version.SHA256): TBytes;
 
 {$IFDEF DELPHIXE8_UP}
 function HmacSHA256Ex(const AKey: TBytes; aStr: UTF8String): TBytes;

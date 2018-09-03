@@ -39,7 +39,7 @@ type
   private
   public
     procedure InitClient(aprofile: UTF8String; asecret_key: UTF8String;
-      aaccess_key: UTF8String); override;
+      aaccess_key: UTF8String; aregion: UTF8String); override;
 
     [TAmazonMarshallerAttribute('CreateTable')]
     function CreateTable(aAmazonDynamoDBRequest: TAmazonDynamoDBRequest)
@@ -161,9 +161,9 @@ begin
 end;
 
 procedure TAmazonDynamoDBClient.InitClient(aprofile: UTF8String;
-  asecret_key: UTF8String; aaccess_key: UTF8String);
+  asecret_key: UTF8String; aaccess_key: UTF8String; aregion: UTF8String);
 begin
-  inherited InitClient(aprofile, asecret_key, aaccess_key);
+  inherited InitClient(aprofile, asecret_key, aaccess_key, aregion);
 
   service := cDynamoDB_service;
 end;

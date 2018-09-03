@@ -184,3 +184,9 @@ FakesAssemblies/
 *.local
 *.identcache
 
+Samples/DynamoDB/CreateTable1/Entitlement.TemplateOSX32.xml
+Samples/DynamoDB/CreateTable1/info.plist.TemplateOSX.xml
+Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.deployproj
+Samples/DynamoDB/CreateTable2/DynamoDBCreateTable.deployproj
+Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.stat
+Samples/DynamoDB/CreateTable2/info.plist.TemplateOSX.xml

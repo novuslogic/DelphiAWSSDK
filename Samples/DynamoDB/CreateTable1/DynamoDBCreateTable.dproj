@@ -80,6 +80,8 @@
     <PropertyGroup Condition="'$(Base_OSX32)'!=''">
         <DCC_UsePackage>DBXInterBaseDriver;DataSnapServer;DataSnapCommon;DataAbstract_SpiderMonkeyScripting_D18;DbxCommonDriver;dbxcds;CustomIPTransport;dsnap;IndyIPServer;IndyCore;CloudService;FmxTeeUI;RemObjects_Indy_D18;bindcompfmx;dbrtl;bindcomp;inetdb;xmlrtl;ibxpress;bindengine;soaprtl;FMXTee;DBXInformixDriver;DBXFirebirdDriver;inet;DBXSybaseASADriver;dbexpress;IndyIPClient;DataAbstract_DBXDriver_Pro_D18;DBXSqliteDriver;fmx;IndySystem;DataSnapClient;RemObjects_WebBroker_D18;DataSnapProviderClient;DBXOracleDriver;DataAbstract_DBXDriver_Enterprise_D18;fmxase;IndyIPCommon;inetdbxpress;rtl;DbxClientDriver;IndyProtocols;DBXMySQLDriver;bindcompdbx;fmxobj;fmxdae;DataSnapIndy10ServerTransport;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
+        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationAlwaysUsageDescription=The reason for accessing the location information of the user;NSLocationWhenInUseUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts</VerInfo_Keys>
+        <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -91,6 +93,10 @@
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>NovusCodeLibraryPlus_Core_D18;DBXInterBaseDriver;DataSnapServer;DataSnapCommon;DataAbstract_SpiderMonkeyScripting_D18;DbxCommonDriver;DataAbstract_SQLiteDriver_D18;vclimg;dbxcds;DatasnapConnectorsFreePascal;vcldb;Hydra_FMX_D18;CustomIPTransport;dsnap;IndyIPServer;IndyCore;CloudService;FmxTeeUI;RemObjects_Indy_D18;NovusCodeLibrary_Core_D18;bindcompfmx;dbrtl;bindcomp;inetdb;SqlDir180;DBXOdbcDriver;xmlrtl;ibxpress;vclactnband;bindengine;soaprtl;FMXTee;bindcompvcl;vclie;DBXInformixDriver;Intraweb;dsnapcon;DBXFirebirdDriver;inet;vclx;DBXSybaseASADriver;dbexpress;IndyIPClient;DataAbstract_DBXDriver_Pro_D18;ZComponent;DBXSqliteDriver;fmx;IndySystem;TeeDB;vclib;DataSnapClient;RemObjects_WebBroker_D18;DataSnapProviderClient;DBXSybaseASEDriver;RemObjects_Synapse_D18;MetropolisUILiveTile;vcldsnap;DBXDb2Driver;DBXOracleDriver;DataAbstract_DBXDriver_Enterprise_D18;vclribbon;fmxase;vcl;IndyIPCommon;DBXMSSQLDriver;inetdbxpress;webdsnap;adortl;tmsdXE4;ZDbc;rtl;DbxClientDriver;ZPlain;Tee;DelphiXE4_RestApi;Hydra_Core_D18;IndyProtocols;DBXMySQLDriver;bindcompdbx;TeeUI;ZCore;vcltouch;tmsexdXE4;VclSmp;DataSnapConnectors;tmsxlsdXE4;fmxobj;Hydra_VCL_D18;ZParseSql;fmxdae;DataSnapIndy10ServerTransport;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -120,7 +126,7 @@
         <DCCReference Include="..\..\..\Source\Core\Amazon.Utils.pas"/>
         <DCCReference Include="..\..\..\Source\Core\Amazon.Request.pas"/>
         <DCCReference Include="..\..\..\Source\Core\Amazon.Response.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.IndyRESTClient.pas"/>
+        <DCCReference Include="..\..\..\Source\Core\Amazon.DelphiRESTClient.pas"/>
         <DCCReference Include="..\..\..\Source\Core\Amazon.SignatureV4.pas"/>
         <DCCReference Include="..\..\..\Source\Core\Amazon.Marshaller.pas"/>
         <None Include="..\..\..\Source\DelphiAWSSDK.inc"/>
@@ -201,6 +207,24 @@
                 <DeployFile LocalName="..\..\..\Source\DelphiAWSSDK.inc" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX32\Debug\DynamoDBCreateTable" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="OSX32">
+                        <RemoteName>DynamoDBCreateTable</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX32\Debug\DynamoDBCreateTable.rsm" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="OSX32">
+                        <RemoteName>DynamoDBCreateTable.rsm</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\Source\DelphiAWSSDK.inc" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -580,6 +604,7 @@
             </Deployment>
             <Platforms>
                 <Platform value="iOSSimulator">False</Platform>
+                <Platform value="Linux64">False</Platform>
                 <Platform value="OSX32">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>

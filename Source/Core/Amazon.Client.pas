@@ -35,15 +35,18 @@ type
   public
     constructor Create; overload;
     constructor Create(aAmazonRESTClient: IAmazonRESTClient); overload;
-    constructor Create(aAmazonRESTClient: IAmazonRESTClient;
-      asecret_key: UTF8String; aaccess_key: UTF8String); overload;
+    constructor Create(aAmazonRESTClient: IAmazonRESTClient; asecret_key: UTF8String; aaccess_key: UTF8String;
+      aregion: UTF8String); overload;
     constructor Create(aAmazonRESTClient: IAmazonRESTClient;
       aprofile: UTF8String); overload;
+    constructor Create(aAmazonRESTClient: IAmazonRESTClient;
+      aprofile: UTF8String; asecret_key: UTF8String; aaccess_key: UTF8String;
+      aregion: UTF8String); overload;
 
     destructor Destory;
 
     procedure InitClient(aprofile: UTF8String; asecret_key: UTF8String;
-      aaccess_key: UTF8String); virtual;
+      aaccess_key: UTF8String; aregion: UTF8String); virtual;
 
     property profile: UTF8String read getprofile write setprofile;
     property credential_file: UTF8String read getcredential_file
@@ -68,27 +71,35 @@ implementation
 
 constructor TAmazonClient.Create;
 begin
-  InitClient('', '', '');
+  InitClient('', '', '', '');
 end;
 
 constructor TAmazonClient.Create(aAmazonRESTClient: IAmazonRESTClient);
 begin
   FAmazonRESTClient := aAmazonRESTClient;
-  InitClient('', '', '');
+  InitClient('', '', '', '');
 end;
 
-constructor TAmazonClient.Create(aAmazonRESTClient: IAmazonRESTClient;
-  asecret_key: UTF8String; aaccess_key: UTF8String);
+constructor TAmazonClient.Create(aAmazonRESTClient: IAmazonRESTClient;asecret_key: UTF8String;
+  aaccess_key: UTF8String; aregion: UTF8String);
 begin
   FAmazonRESTClient := aAmazonRESTClient;
-  InitClient('', asecret_key, aaccess_key);
+  InitClient('', asecret_key, aaccess_key, aregion);
 end;
 
 constructor TAmazonClient.Create(aAmazonRESTClient: IAmazonRESTClient;
   aprofile: UTF8String);
 begin
   FAmazonRESTClient := aAmazonRESTClient;
-  InitClient(aprofile, '', '');
+  InitClient(aprofile, '', '', '');
+end;
+
+constructor TAmazonClient.Create(aAmazonRESTClient: IAmazonRESTClient;
+  aprofile: UTF8String; asecret_key: UTF8String; aaccess_key: UTF8String;
+  aregion: UTF8String);
+begin
+  FAmazonRESTClient := aAmazonRESTClient;
+  InitClient(aprofile, asecret_key, aaccess_key, aregion);
 end;
 
 destructor TAmazonClient.Destory;
@@ -97,7 +108,7 @@ begin
 end;
 
 procedure TAmazonClient.InitClient(aprofile: UTF8String;
-  asecret_key: UTF8String; aaccess_key: UTF8String);
+  asecret_key: UTF8String; aaccess_key: UTF8String; aregion: UTF8String);
 begin
   FAmazonCredentials := tAmazonCredentials.Create;
 
@@ -108,6 +119,7 @@ begin
   FAmazonCredentials.profile := aprofile;
   FAmazonCredentials.access_key := aaccess_key;
   FAmazonCredentials.secret_key := asecret_key;
+  FAmazonCredentials.region := aregion;
 
   if (aaccess_key = '') and (asecret_key = '') then
   begin
