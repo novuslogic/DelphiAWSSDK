@@ -1,6 +1,6 @@
 03/09/2018
 
-* Tested support for Windows 64Bit, MacOSX 32Bit
+* Tested support for Windows 32/64Bit, MacOSX 32Bit
 * Removed Windows unit from unit Amazon.Utils
 * Added Region to TAmazonClient.Create
 
