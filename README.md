@@ -15,6 +15,3 @@ Licence
 [Apache License Version 2.0](LICENSE)
 
 
-Slack Channel
--------------
-[#delphiawssdk](https://novuslogic.slack.com/messages/delphiawssdk/)
