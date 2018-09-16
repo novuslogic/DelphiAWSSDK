@@ -17,4 +17,4 @@ Licence
 
 Slack Channel
 -------------
-[#novuscodelibrary](https://novuslogic.slack.com/messages/delphiawssdk/)
+[#delphiawssdk](https://novuslogic.slack.com/messages/delphiawssdk/)
