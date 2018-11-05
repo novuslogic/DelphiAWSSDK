@@ -1,0 +1,22 @@
+{"version":1,"strings":[
+{"hash":130365950,"name":"idresourcestringsopenssl.rsossfailedtoload","sourcebytes":[70,97,105,108,101,100,32,116,111,32,108,111,97,100,32,37,115,46],"value":"Failed to load %s."},
+{"hash":668702,"name":"idresourcestringsopenssl.rsosslmodenotset","sourcebytes":[77,111,100,101,32,104,97,115,32,110,111,116,32,98,101,101,110,32,115,101,116,46],"value":"Mode has not been set."},
+{"hash":4851454,"name":"idresourcestringsopenssl.rsosslcouldnotloadssllibrary","sourcebytes":[67,111,117,108,100,32,110,111,116,32,108,111,97,100,32,83,83,76,32,108,105,98,114,97,114,121,46],"value":"Could not load SSL library."},
+{"hash":23937138,"name":"idresourcestringsopenssl.rsosslstatusstring","sourcebytes":[83,83,76,32,115,116,97,116,117,115,58,32,34,37,115,34],"value":"SSL status: \"%s\""},
+{"hash":206554350,"name":"idresourcestringsopenssl.rsosslconnectiondropped","sourcebytes":[83,83,76,32,99,111,110,110,101,99,116,105,111,110,32,104,97,115,32,100,114,111,112,112,101,100,46],"value":"SSL connection has dropped."},
+{"hash":181744078,"name":"idresourcestringsopenssl.rsosslcertificatelookup","sourcebytes":[83,83,76,32,99,101,114,116,105,102,105,99,97,116,101,32,114,101,113,117,101,115,116,32,101,114,114,111,114,46],"value":"SSL certificate request error."},
+{"hash":183180814,"name":"idresourcestringsopenssl.rsosslinternal","sourcebytes":[83,83,76,32,108,105,98,114,97,114,121,32,105,110,116,101,114,110,97,108,32,101,114,114,111,114,46],"value":"SSL library internal error."},
+{"hash":88616532,"name":"idresourcestringsopenssl.rsosslalert","sourcebytes":[37,115,32,65,108,101,114,116],"value":"%s Alert"},
+{"hash":169060292,"name":"idresourcestringsopenssl.rsosslreadalert","sourcebytes":[37,115,32,82,101,97,100,32,65,108,101,114,116],"value":"%s Read Alert"},
+{"hash":35307252,"name":"idresourcestringsopenssl.rsosslwritealert","sourcebytes":[37,115,32,87,114,105,116,101,32,65,108,101,114,116],"value":"%s Write Alert"},
+{"hash":119852448,"name":"idresourcestringsopenssl.rsosslacceptloop","sourcebytes":[65,99,99,101,112,116,32,76,111,111,112],"value":"Accept Loop"},
+{"hash":37029138,"name":"idresourcestringsopenssl.rsosslaccepterror","sourcebytes":[65,99,99,101,112,116,32,69,114,114,111,114],"value":"Accept Error"},
+{"hash":56509844,"name":"idresourcestringsopenssl.rsosslacceptfailed","sourcebytes":[65,99,99,101,112,116,32,70,97,105,108,101,100],"value":"Accept Failed"},
+{"hash":119756996,"name":"idresourcestringsopenssl.rsosslacceptexit","sourcebytes":[65,99,99,101,112,116,32,69,120,105,116],"value":"Accept Exit"},
+{"hash":247694032,"name":"idresourcestringsopenssl.rsosslconnectloop","sourcebytes":[67,111,110,110,101,99,116,32,76,111,111,112],"value":"Connect Loop"},
+{"hash":204067970,"name":"idresourcestringsopenssl.rsosslconnecterror","sourcebytes":[67,111,110,110,101,99,116,32,69,114,114,111,114],"value":"Connect Error"},
+{"hash":43211892,"name":"idresourcestringsopenssl.rsosslconnectfailed","sourcebytes":[67,111,110,110,101,99,116,32,70,97,105,108,101,100],"value":"Connect Failed"},
+{"hash":247634868,"name":"idresourcestringsopenssl.rsosslconnectexit","sourcebytes":[67,111,110,110,101,99,116,32,69,120,105,116],"value":"Connect Exit"},
+{"hash":65208836,"name":"idresourcestringsopenssl.rsosslhandshakestart","sourcebytes":[72,97,110,100,115,104,97,107,101,32,83,116,97,114,116],"value":"Handshake Start"},
+{"hash":155144421,"name":"idresourcestringsopenssl.rsosslhandshakedone","sourcebytes":[72,97,110,100,115,104,97,107,101,32,68,111,110,101],"value":"Handshake Done"}
+]}

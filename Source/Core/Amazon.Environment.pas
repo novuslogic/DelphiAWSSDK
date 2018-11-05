@@ -2,7 +2,11 @@ unit Amazon.Environment;
 
 interface
 
-Uses System.SysUtils;
+Uses {$IFNDEF FPC}
+  System.SysUtils;
+{$ELSE}
+  SysUtils;
+{$ENDIF}
 
 const
   AWS_REGION = 'AWS_REGION';

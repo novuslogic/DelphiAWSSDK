@@ -3,8 +3,8 @@ unit Amazon.IndyRestClient;
 
 interface
 
-uses IdSSLOpenSSL, IPPeerAPI, IdHttp, classes, SysUtils, IdStack, IdGlobal,
-  IPPeerClient, Amazon.Interfaces;
+uses IdSSLOpenSSL, {IPPeerAPI,} IdHttp, classes, SysUtils, IdStack, IdGlobal,
+  {IPPeerClient,} Amazon.Interfaces;
 
 type
   TAmazonIndyRestClient = class(TInterfacedObject, IAmazonRestClient)
@@ -15,7 +15,8 @@ type
     fiErrorCode: Integer;
     fsErrorMessage: String;
     fsUserAgent: string;
-    FIdHttp: IIPHTTP;
+    //FIdHttp: IIPHTTP;
+    FIdHttp: TIDHttp;
   protected
     function GetAcceptCharset: string;
     procedure SetAcceptCharset(value: string);
@@ -57,9 +58,12 @@ begin
   fiErrorCode := 0;
   fsErrorMessage := '';
 
-  FIdHttp := PeerFactory.CreatePeer('', IIPHTTP, nil) as IIPHTTP;
-  FIdHttp.IOHandler := PeerFactory.CreatePeer('', IIPSSLIOHandlerSocketOpenSSL,
-    nil) as IIPSSLIOHandlerSocketOpenSSL;
+  FIdHttp := tIDHttp.Create(NIL);
+  FIdHttp.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(NIL);
+
+  //FIdHttp := PeerFactory.CreatePeer('', IIPHTTP, nil) as IIPHTTP;
+  // FIdHttp.IOHandler := PeerFactory.CreatePeer('', IIPSSLIOHandlerSocketOpenSSL,
+  //  nil) as IIPSSLIOHandlerSocketOpenSSL;
 
   FIdHttp.Request.CustomHeaders.FoldLines := false;
 
@@ -82,10 +86,15 @@ Var
 begin
 
   try
+    {$IFNDEF FPC}
     FSource := TStringStream.Create(aRequest, TEncoding.ANSI);
+    {$ELSE}
+    FSource := TStringStream.Create(aRequest);
+    {$ENDIF}
+
     FSource.Position := 0;
 
-    FResponseContent := TStringStream.Create;
+    FResponseContent := TStringStream.Create('');
 
     FIdHttp.Request.ContentType := Content_type;
     {$IFDEF DELPHIXE8_UP}
@@ -98,7 +107,8 @@ begin
     FIdHttp.Request.AcceptCharset := AcceptCharset;
     {$ENDIF}
 
-    FIdHttp.DoPost(aUrl, FSource, FResponseContent);
+    //FIdHttp.DoPost(aUrl, FSource, FResponseContent);
+    FIdHttp.Post(aUrl, FSource, FResponseContent);
 
     aResponse := FResponseContent.DataString;
 
@@ -106,7 +116,7 @@ begin
     FSource.Free;
 
   except
-    on E: EIPHTTPProtocolExceptionPeer do
+    on E: EIdHTTPProtocolException do
     begin
       fiErrorCode := E.ErrorCode;
       fsErrorMessage := E.ErrorMessage;

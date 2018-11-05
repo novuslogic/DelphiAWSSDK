@@ -186,7 +186,7 @@ begin
   fsAuthorization_header := value;
 end;
 
-function TAmazonRequest.getauthorization_header;
+function TAmazonRequest.getauthorization_header: UTF8String;
 begin
   Result := fsAuthorization_header;
 end;

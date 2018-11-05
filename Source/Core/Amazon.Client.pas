@@ -2,8 +2,14 @@ unit Amazon.Client;
 
 interface
 
-uses Amazon.Interfaces, System.SysUtils, Amazon.Credentials,
-  Amazon.Utils, Amazon.Response, System.Rtti, // Amazon.RESTClient ,
+uses Amazon.Interfaces,
+{$IFNDEF FPC}
+  System.SysUtils,
+{$ELSE}
+  SysUtils,
+{$ENDIF}
+  Amazon.Credentials,
+  Amazon.Utils, Amazon.Response, //System.Rtti,
   Amazon.Request, Amazon.SignatureV4;
 
 type
@@ -247,7 +253,14 @@ var
 begin
   result := NIL;
 
-  if Not Assigned(aAmazonRESTClient) then;
+  if (secret_key = '') or  (access_key = '') then
+     raise Exception.Create('secret_key or access_key not assigned.');
+
+  if Not Assigned(aAmazonRESTClient) then
+    raise Exception.Create('IAmazonRESTClient not assigned.');
+
+  if region = '' then
+     raise Exception.Create('region not assigned.');
 
   Try
     GetAWSDate_Stamp(UTCNow, amz_date, date_stamp);

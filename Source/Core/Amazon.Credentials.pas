@@ -2,7 +2,13 @@ unit Amazon.Credentials;
 
 interface
 
-uses Amazon.Environment, Amazon.Utils, SysUtils, inifiles;
+uses Amazon.Environment, Amazon.Utils,
+   {$IFNDEF FPC}
+   System.SysUtils,
+   {$ELSE}
+   SysUtils,
+   {$ENDIF}
+   inifiles;
 
 const
   aws_defaultcredential_file = 'credentials.ini';

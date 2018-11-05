@@ -3,17 +3,32 @@ unit Amazon.Utils;
 
 interface
 
-uses Classes, IdDateTimeStamp, Soap.XSBuiltIns, System.SysUtils,
-  System.DateUtils, idGlobal,
-  IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash,
-  Data.DBXJSONReflect,
+uses Classes,
+
 {$IFDEF DELPHIXE8_UP}
   System.Hash,
   System.JSON,
 {$ENDIF}
-  Data.DBXJSON;
+{$IFNDEF FPC}
+  System.SysUtils,
+  System.DateUtils,
+  Soap.XSBuiltIns,
+  Data.DBXJSONReflect,
+  Data.DBXJSON,
+{$ELSE}
+   SysUtils,
+   DateUtils,
 
-function DateTimeToISO8601(const aDateTime: TDateTime): string;
+{$ENDIF}
+  IdDateTimeStamp,
+  idGlobal,
+  IdHMACSHA1, IdSSLOpenSSL, IdHashSHA, IdHashMessageDigest, idHash;
+
+
+
+
+
+//function DateTimeToISO8601(const aDateTime: TDateTime): string;
 procedure GetAWSDate_Stamp(const aDateTime: TDateTime;
   var aamz_date, adate_stamp: UTF8String);
 function UTCNow: TDateTime;
@@ -31,7 +46,7 @@ function HashSHA256(aStr: String): String;
 function GetAWSUserDir: UTF8String;
 function GetAWSHost(aendpoint: UTF8String): UTF8String;
 function DoubleQuotedStr(const S: UTF8String): UTF8String;
-function DeepCopy(aValue: TObject): TObject;
+// function DeepCopy(aValue: TObject): TObject;
 
 implementation
 
@@ -40,6 +55,10 @@ begin
   Result := S;
   Result := '"' + Result + '"';
 end;
+
+
+(*
+
 
 function DateTimeToISO8601(const aDateTime: TDateTime): string;
 Var
@@ -60,7 +79,7 @@ begin
 
   D.Free;
 end;
-
+*)
 
 // http://docs.aws.amazon.com/general/latest/gr/sigv4-date-handling.html
 
@@ -74,7 +93,11 @@ end;
 
 function UTCNow: TDateTime;
 begin
+  {$IFNDEF FPC}
   Result := TTimeZone.Local.ToUniversalTime(Now);
+  {$ELSE}
+  Result := LocalTimeToUniversal(Now);
+  {$ENDIF}
 end;
 
 
@@ -202,6 +225,7 @@ begin
 
 end;
 
+(*
 function DeepCopy(aValue: TObject): TObject;
 var
   MarshalObj: TJSONMarshal;
@@ -224,5 +248,6 @@ begin
     UnMarshalObj.Free;
   end;
 end;
+*)
 
 end.

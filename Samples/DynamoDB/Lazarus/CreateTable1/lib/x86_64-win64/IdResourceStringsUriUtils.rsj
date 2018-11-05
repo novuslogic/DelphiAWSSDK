@@ -1,0 +1,6 @@
+{"version":1,"strings":[
+{"hash":153174948,"name":"idresourcestringsuriutils.rsutf16indexoutofrange","sourcebytes":[67,104,97,114,97,99,116,101,114,32,73,110,100,101,120,32,37,100,32,111,117,116,32,111,102,32,82,97,110,103,101,44,32,76,101,110,103,116,104,32,61,32,37,100],"value":"Character Index %d out of Range, Length = %d"},
+{"hash":118055701,"name":"idresourcestringsuriutils.rsutf16invalidhighsurrogate","sourcebytes":[67,104,97,114,97,99,116,101,114,32,97,116,32,73,110,100,101,120,32,37,100,32,105,115,32,110,111,116,32,97,32,118,97,108,105,100,32,85,84,70,45,49,54,32,72,105,103,104,32,83,117,114,114,111,103,97,116,101],"value":"Character at Index %d is not a valid UTF-16 High Surrogate"},
+{"hash":100068421,"name":"idresourcestringsuriutils.rsutf16invalidlowsurrogate","sourcebytes":[67,104,97,114,97,99,116,101,114,32,97,116,32,73,110,100,101,120,32,37,100,32,105,115,32,110,111,116,32,97,32,118,97,108,105,100,32,85,84,70,45,49,54,32,76,111,119,32,83,117,114,114,111,103,97,116,101],"value":"Character at Index %d is not a valid UTF-16 Low Surrogate"},
+{"hash":57794629,"name":"idresourcestringsuriutils.rsutf16missinglowsurrogate","sourcebytes":[77,105,115,115,105,110,103,32,97,32,76,111,119,32,83,117,114,114,111,103,97,116,101,32,105,110,32,85,84,70,45,49,54,32,115,101,113,117,101,110,99,101],"value":"Missing a Low Surrogate in UTF-16 sequence"}
+]}
