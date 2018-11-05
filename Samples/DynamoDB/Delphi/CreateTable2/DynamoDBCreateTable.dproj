@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{81B29FDE-0C5E-4E5F-817B-91A1B3A8608E}</ProjectGuid>
-        <ProjectVersion>18.2</ProjectVersion>
+        <ProjectVersion>18.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <MainSource>DynamoDBCreateTable.dpr</MainSource>
         <Base>True</Base>
@@ -196,17 +196,18 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Client.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Interfaces.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Credentials.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Environment.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Utils.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Request.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Response.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.DelphiRESTClient.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.SignatureV4.pas"/>
-        <DCCReference Include="..\..\..\Source\Core\Amazon.Marshaller.pas"/>
-        <DCCReference Include="..\..\..\Source\SDK\DynamoDB\Amazon.DynamoDB.pas"/>
+        <DCCReference Include="Amazon.Client.pas"/>
+        <DCCReference Include="Amazon.Interfaces.pas"/>
+        <DCCReference Include="Amazon.Credentials.pas"/>
+        <DCCReference Include="Amazon.Environment.pas"/>
+        <DCCReference Include="Amazon.Utils.pas"/>
+        <DCCReference Include="Amazon.Request.pas"/>
+        <DCCReference Include="Amazon.Response.pas"/>
+        <DCCReference Include="Amazon.IndyRESTClient.pas"/>
+        <DCCReference Include="Amazon.DelphiRESTClient.pas"/>
+        <DCCReference Include="Amazon.SignatureV4.pas"/>
+        <DCCReference Include="Amazon.Marshaller.pas"/>
+        <DCCReference Include="Amazon.DynamoDB.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -667,7 +668,6 @@
                 <Platform value="iOSDevice32">False</Platform>
                 <Platform value="iOSDevice64">False</Platform>
                 <Platform value="iOSSimulator">False</Platform>
-                <Platform value="Linux64">False</Platform>
                 <Platform value="OSX32">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>

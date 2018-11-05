@@ -78,7 +78,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="D:\Delphi Components\Indy\Lib\Protocols\;D:\Delphi Components\Indy\Lib\System\;D:\Delphi Components\Indy\Lib\Core\"/>
+      <OtherUnitFiles Value="D:\Delphi Components\Indy\Lib\Protocols\;D:\Delphi Components\Indy\Lib\System\;D:\Delphi Components\Indy\Lib\Core\;..\..\..\..\Source\Core;..\..\..\..\Source\SDK\DynamoDB"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
   </CompilerOptions>

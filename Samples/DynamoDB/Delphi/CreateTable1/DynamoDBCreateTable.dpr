@@ -7,16 +7,16 @@
 uses
   System.SysUtils,
   Classes,
-  Amazon.Interfaces in '..\..\..\..\Source\Core\Amazon.Interfaces.pas',
-  Amazon.Credentials in '..\..\..\..\Source\Core\Amazon.Credentials.pas',
-  Amazon.Environment in '..\..\..\..\Source\Core\Amazon.Environment.pas',
-  Amazon.Utils in '..\..\..\..\Source\Core\Amazon.Utils.pas',
-  Amazon.Request in '..\..\..\..\Source\Core\Amazon.Request.pas',
-  Amazon.Response in '..\..\..\..\Source\Core\Amazon.Response.pas',
-  Amazon.DelphiRESTClient in '..\..\..\..\Source\Core\Amazon.DelphiRESTClient.pas',
-  Amazon.IndyRESTClient in '..\..\..\..\Source\Core\Amazon.IndyRESTClient.pas',
-  Amazon.SignatureV4 in '..\..\..\..\Source\Core\Amazon.SignatureV4.pas',
-  Amazon.Client in '..\..\..\..\Source\Core\Amazon.Client.pas';
+  Amazon.Interfaces in 'Amazon.Interfaces.pas',
+  Amazon.Credentials in 'Amazon.Credentials.pas',
+  Amazon.Environment in 'Amazon.Environment.pas',
+  Amazon.Utils in 'Amazon.Utils.pas',
+  Amazon.Request in 'Amazon.Request.pas',
+  Amazon.Response in 'Amazon.Response.pas',
+  Amazon.DelphiRESTClient in 'Amazon.DelphiRESTClient.pas',
+  Amazon.IndyRESTClient in 'Amazon.IndyRESTClient.pas',
+  Amazon.SignatureV4 in 'Amazon.SignatureV4.pas',
+  Amazon.Client in 'Amazon.Client.pas';
 
 var
   FAmazonRESTClient: IAmazonRestClient;

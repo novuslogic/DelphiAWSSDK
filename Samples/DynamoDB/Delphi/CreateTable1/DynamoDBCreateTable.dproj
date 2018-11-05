@@ -119,16 +119,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Interfaces.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Credentials.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Environment.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Utils.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Request.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Response.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.DelphiRESTClient.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.IndyRESTClient.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.SignatureV4.pas"/>
-        <DCCReference Include="..\..\..\..\Source\Core\Amazon.Client.pas"/>
+        <DCCReference Include="Amazon.Interfaces.pas"/>
+        <DCCReference Include="Amazon.Credentials.pas"/>
+        <DCCReference Include="Amazon.Environment.pas"/>
+        <DCCReference Include="Amazon.Utils.pas"/>
+        <DCCReference Include="Amazon.Request.pas"/>
+        <DCCReference Include="Amazon.Response.pas"/>
+        <DCCReference Include="Amazon.DelphiRESTClient.pas"/>
+        <DCCReference Include="Amazon.IndyRESTClient.pas"/>
+        <DCCReference Include="Amazon.SignatureV4.pas"/>
+        <DCCReference Include="Amazon.Client.pas"/>
         <None Include="..\..\..\Source\DelphiAWSSDK.inc"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
