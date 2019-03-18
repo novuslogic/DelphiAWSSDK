@@ -191,7 +191,6 @@ Samples/DynamoDB/CreateTable2/DynamoDBCreateTable.deployproj
 Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.stat
 Samples/DynamoDB/CreateTable2/info.plist.TemplateOSX.xml
 Samples/DynamoDB/CreateTable3/CreateTable3.exe
-Code-generation/Generator/Source/SDK.pas
 Code-generation/Generator/Properties/DynamoDB.xml
 Code-generation/Generator/Generator.zcproject
 Code-generation/Generator/Generator.zcconfig
@@ -447,7 +446,6 @@ Code-generation/api-descriptions/ec2-2015-10-01.normal.json
 Code-generation/api-descriptions/ec2-2015-04-15.normal.json
 Code-generation/api-descriptions/dynamodbstreams-2012-08-10.normal.json
 Code-generation/api-descriptions/dynamodb-2012-08-10.normal.json
-Code-generation/api-descriptions/dynamodb-2011-12-05.normal.json
 Code-generation/api-descriptions/ds-2015-04-16.normal.json
 Code-generation/api-descriptions/dms-2016-01-01.normal.json
 Code-generation/api-descriptions/dlm-2018-01-12.normal.json
@@ -642,3 +640,9 @@ Samples/DynamoDB/Lazarus/CreateTable1/lib/x86_64-win64/IdZLibCompressorBase.o
 Samples/DynamoDB/Lazarus/CreateTable1/lib/x86_64-win64/IdZLibCompressorBase.ppu
 Samples/DynamoDB/Lazarus/CreateTable1/libeay32.dll
 Samples/DynamoDB/Lazarus/CreateTable1/ssleay32.dll
+Code-generation.rar
+Doc/wip4.txt
+Doc/WIP5.txt
+Doc/wip6.txt
+*.stat
+Samples/DynamoDB/Delphi/CreateTable1/DynamoDBCreateTable.stat

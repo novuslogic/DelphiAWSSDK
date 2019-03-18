@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project>
+  <outputconsole>true</outputconsole>
+  <messageslogpath></messageslogpath>
+  <Createoutputdir>true</Createoutputdir>
+  <trace>true</trace>
+  
+  <projectitem name = "Amazon.DynamoDB2.pas">
+    <source>[%sourcepath%]SDK.pas</source>
+    <properties>[%propertiespath%]DynamoDB.xml</properties>
+    <overrideoutput>true</overrideoutput>
+    <output>[%outputpath%]DynamoDB\Amazon.DynamoDB2.pas</output>
+  </projectitem>
+  
+</project>
