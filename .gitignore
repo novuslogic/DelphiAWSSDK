@@ -191,7 +191,6 @@ Samples/DynamoDB/CreateTable2/DynamoDBCreateTable.deployproj
 Samples/DynamoDB/CreateTable1/DynamoDBCreateTable.stat
 Samples/DynamoDB/CreateTable2/info.plist.TemplateOSX.xml
 Samples/DynamoDB/CreateTable3/CreateTable3.exe
-Code-generation/Generator/Properties/DynamoDB.xml
 Code-generation/Generator/Generator.zcproject
 Code-generation/Generator/Generator.zcconfig
 Code-generation/Generator/Build.bat

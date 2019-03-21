@@ -20,8 +20,8 @@ type
   <%repeat(SYS.PRED(JSON.JSONArraySize($JSONShapes))%>
   <%$JSONShape=JSON.JSONGetArray($JSONShapes,$Counter)%>
   [TAmazonMarshallerAttribute('<%=JSON.JSONString(JSON.JSONPair($JSONShape))%>')] 
-  <%IF(JSON.ToJSONValue(JSON.JSONQuery($JSONShape, "type"))=$string)%>
-  <%=JSON.ToJSONValue(JSON.JSONQuery($JSONShape, "type"))%>  
+  <%IF(JSON.JSONQueryValue($JSONShape, "type"))=$string)%>
+  <%=JSON.JSONQueryValue($JSONShape, "type"))%>  
   <%ENDIF%>
   t<%=JSON.JSONString(JSON.JSONPair($JSONShape))%> = class(TObject)
   begin
