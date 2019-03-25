@@ -1,4 +1,4 @@
-<%include="sdkconstants.inc"%>
+<%include="sdk.inc"%>
 <%$JSONRoot=JSON.LoadJSON($$apifilename)%>
 <%$JSONMetadata=JSON.JSONQuery($JSONRoot, "metadata")%>
 <%$JSONOperations=JSON.JSONQuery($JSONRoot, "operations")%>
@@ -19,14 +19,15 @@ type
   <%$Counter=0%>
   <%repeat(SYS.PRED(JSON.JSONArraySize($JSONShapes))%>
   <%$JSONShape=JSON.JSONGetArray($JSONShapes,$Counter)%>
+  <%IF(JSON.JSONQueryValue($JSONShape, $type)=$structure)%>  
   [TAmazonMarshallerAttribute('<%=JSON.JSONString(JSON.JSONPair($JSONShape))%>')] 
-  <%IF(JSON.JSONQueryValue($JSONShape, "type"))=$string)%>
-  <%=JSON.JSONQueryValue($JSONShape, "type"))%>  
-  <%ENDIF%>
-  t<%=JSON.JSONString(JSON.JSONPair($JSONShape))%> = class(TObject)
-  begin
+  T<%=JSON.JSONString(JSON.JSONPair($JSONShape))%>=class(tobject)
+  protected
+  private
+  public
   end;
 
+  <%ENDIF%>
   <%SYS.Inc($Counter)%>
   <%endrepeat%>
 
