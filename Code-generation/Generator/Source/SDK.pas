@@ -1,3 +1,4 @@
+<%CODEBEHINE="SDKUtils.pas"%>
 <%include="sdk.inc"%>
 <%$JSONRoot=JSON.LoadJSON($$apifilename)%>
 <%$JSONMetadata=JSON.JSONQuery($JSONRoot, "metadata")%>
@@ -22,15 +23,21 @@ type
   <%IF(JSON.JSONQueryValue($JSONShape, $type)=$structure)%>  
   [TAmazonMarshallerAttribute('<%=JSON.JSONString(JSON.JSONPair($JSONShape))%>')] 
   T<%=JSON.JSONString(JSON.JSONPair($JSONShape))%>=class(tobject)
+  <%$JSONShapeMembers=JSON.JSONQuery($JSONShape, $members)%>
   protected
   private
   public
   end;
 
+  <%repeat(1)%>
+  test
+  <%endrepeat%>
   <%ENDIF%>
   <%SYS.Inc($Counter)%>
   <%endrepeat%>
-
+ 
+  
+   
   <%classname%> = class(TAmazonClient)
   protected
   private
@@ -44,9 +51,7 @@ type
     <%$JSONOperationOutput=JSON.JSONQuery($JSONOperation, "output")%>   
     <%$JSONOperationDocumentation=JSON.JSONQuery($JSONOperation, "documentation")%>  
     <%IF(SYS.IsVarEmpty($JSONOperationDocumentation)=false)%> 
-    /// <summary>
     ///  <%=JSON.ToJSONValue($JSONOperationDocumentation)%> 
-    /// </summary>
     <%ENDIF%>
     [TAmazonMarshallerAttribute('<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperation, "name"))%>')]  
     <%IF(SYS.IsVarEmpty($JSONOperationOutput)=true)%>                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -78,5 +83,6 @@ end;
 
 <%SYS.Inc($Counter)%>
 <%endrepeat%>
+
 
 end.
