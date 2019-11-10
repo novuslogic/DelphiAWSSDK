@@ -11,5 +11,12 @@
     <overrideoutput>true</overrideoutput>
     <output>[%outputpath%]DynamoDB\Amazon.DynamoDB2.pas</output>
   </projectitem>
-  
+
+  <projectconfig>
+   <properties> 
+     <outputpath>D:\Projects\DelphiAWSSDK\Source\SDK\</outputpath>
+     <propertiespath>D:\Projects\DelphiAWSSDK\Code-generation\Generator\Properties\</propertiespath>
+     <sourcepath>D:\Projects\DelphiAWSSDK\Code-generation\Generator\Source\</sourcepath>
+   </properties>  
+   </projectconfig>
 </project>

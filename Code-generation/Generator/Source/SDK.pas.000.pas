@@ -12,12 +12,9 @@ uses Amazon.Client, Amazon.Request, System.Classes, System.Generics.Collections,
   Amazon.Response, Amazon.Utils, Amazon.Marshaller, System.Rtti, System.TypInfo,
   Amazon.Interfaces, System.AnsiStrings, System.SysUtils;
 
-<%$targetPrefix=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "targetPrefix"))%>
-<%$endpointPrefix=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>
-
 Const
-  cDynamoDB_targetPrefix = '<%=$targetPrefix%>';
-  cDynamoDB_endpointPrefix = '<%=$endpointPrefix%>';
+  cDynamoDB_targetPrefix = '<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "targetPrefix"))%>';
+  cDynamoDB_endpointprefix = '<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>';
 
 type
   <%$Counter=0%>
@@ -47,15 +44,11 @@ type
     <%$Counter=0%>
     <%repeat(SYS.PRED(JSON.JSONArraySize($JSONOperations))%>
     <%$JSONOperation=JSON.JSONGetArray($JSONOperations,$Counter)%>
-    <%$procedurename=JSON.JSONString($JSONOperation)%>
     <%$JSONOperationInput=JSON.JSONQuery($JSONOperation, "input")%>
     <%$JSONOperationOutput=JSON.JSONQuery($JSONOperation, "output")%>   
     <%$JSONOperationDocumentation=JSON.JSONQuery($JSONOperation, "documentation")%>  
     <%IF(SYS.IsVarEmpty($JSONOperationDocumentation)=false)%> 
-    <%$Doc=JSON.ToJSONValue($JSONOperationDocumentation)%>
-    <%$filename=$$docfolder+$procedurename + ".html"%>
-    <%SYS.STRINGTOFILE($Doc, "D:\Projects\DelphiAWSSDK\Doc\test.html")%>
-    <%=$filename%>
+    ///  <%=JSON.ToJSONValue($JSONOperationDocumentation)%> 
     <%ENDIF%>
     [TAmazonMarshallerAttribute('<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperation, "name"))%>')]  
     <%IF(SYS.IsVarEmpty($JSONOperationOutput)=true)%>                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -69,14 +62,6 @@ type
   end;
 
 implementation 
-
-procedure <%classname%>.InitClient(aprofile: UTF8String;
-  asecret_key: UTF8String; aaccess_key: UTF8String; aregion: UTF8String);
-begin
-  inherited InitClient(aprofile, asecret_key, aaccess_key, aregion);
-
-  service := c<%=$endpointPrefix%>_endpointPrefix;
-end;
 
 <%$Counter=0%>
 <%repeat(SYS.PRED(JSON.JSONArraySize($JSONOperations))%>

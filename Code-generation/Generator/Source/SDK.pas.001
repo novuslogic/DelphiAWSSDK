@@ -12,12 +12,9 @@ uses Amazon.Client, Amazon.Request, System.Classes, System.Generics.Collections,
   Amazon.Response, Amazon.Utils, Amazon.Marshaller, System.Rtti, System.TypInfo,
   Amazon.Interfaces, System.AnsiStrings, System.SysUtils;
 
-<%$targetPrefix=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "targetPrefix"))%>
-<%$endpointPrefix=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>
-
 Const
-  cDynamoDB_targetPrefix = '<%=$targetPrefix%>';
-  cDynamoDB_endpointPrefix = '<%=$endpointPrefix%>';
+  c<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>_targetPrefix = '<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "targetPrefix"))%>';
+  c<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>_endpointPrefix = '<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>';
 
 type
   <%$Counter=0%>
@@ -31,13 +28,12 @@ type
   private
   public
   end;
-  
+
   <%ENDIF%>
   <%SYS.Inc($Counter)%>
   <%endrepeat%>
- 
   
-   
+ 
   <%classname%> = class(TAmazonClient)
   protected
   private
@@ -47,19 +43,14 @@ type
     <%$Counter=0%>
     <%repeat(SYS.PRED(JSON.JSONArraySize($JSONOperations))%>
     <%$JSONOperation=JSON.JSONGetArray($JSONOperations,$Counter)%>
-    <%$procedurename=JSON.JSONString($JSONOperation)%>
     <%$JSONOperationInput=JSON.JSONQuery($JSONOperation, "input")%>
     <%$JSONOperationOutput=JSON.JSONQuery($JSONOperation, "output")%>   
     <%$JSONOperationDocumentation=JSON.JSONQuery($JSONOperation, "documentation")%>  
     <%IF(SYS.IsVarEmpty($JSONOperationDocumentation)=false)%> 
-    <%$Doc=JSON.ToJSONValue($JSONOperationDocumentation)%>
-    <%$filename=$$docfolder+$procedurename + ".html"%>
-    <%SYS.STRINGTOFILE($Doc, "D:\Projects\DelphiAWSSDK\Doc\test.html")%>
-    <%=$filename%>
+     ///  <%=JSON.ToJSONValue($JSONOperationDocumentation)%> 
     <%ENDIF%>
     [TAmazonMarshallerAttribute('<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperation, "name"))%>')]  
-    <%IF(SYS.IsVarEmpty($JSONOperationOutput)=true)%>                                                                                                                                                                                                                                                                                                                                                                                                              
-    procedure <%=JSON.JSONString($JSONOperation)%>(a<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperationInput, "shape"))%>: t<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperationInput, "shape"))%>);
+    <%IF(SYS.IsVarEmpty($JSONOperationOutput)=true)%>                                                                                                                                             procedure <%=JSON.JSONString($JSONOperation)%>(a<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperationInput, "shape"))%>: t<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperationInput, "shape"))%>);
     <%ENDIF%>
     <%IF(SYS.IsVarEmpty($JSONOperationOutput)=false)%>
     function <%=JSON.JSONString($JSONOperation)%>(a<%=JSON.JSONQueryValue($JSONOperationInput, "shape")%>: t<%=JSON.JSONQueryValue($JSONOperationInput, "shape")%>):t<%=JSON.JSONQueryValue($JSONOperationOutput,"shape")%>;
@@ -75,9 +66,9 @@ procedure <%classname%>.InitClient(aprofile: UTF8String;
 begin
   inherited InitClient(aprofile, asecret_key, aaccess_key, aregion);
 
-  service := c<%=$endpointPrefix%>_endpointPrefix;
+  service := c<%=JSON.ToJSONValue(JSON.JSONQuery($JSONMetadata, "endpointPrefix"))%>_endpointPrefix;
 end;
-
+ 
 <%$Counter=0%>
 <%repeat(SYS.PRED(JSON.JSONArraySize($JSONOperations))%>
 <%$JSONOperation=JSON.JSONGetArray($JSONOperations,$Counter)%>    
@@ -95,6 +86,7 @@ end;
 
 <%SYS.Inc($Counter)%>
 <%endrepeat%>
-
+  
+  
 
 end.

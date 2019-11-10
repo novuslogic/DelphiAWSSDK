@@ -2,4 +2,5 @@
 <properties>
    <classname>TAmazonDynamoDBClient</classname>
    <apifilename>D:\Projects\DelphiAWSSDK\Code-generation\api-descriptions\dynamodb-2012-08-10.normal.json</apifilename>  
+   <docfolder>D:\Projects\DelphiAWSSDK\Doc\</docfolder>
 </properties>
