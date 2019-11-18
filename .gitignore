@@ -645,3 +645,5 @@ Doc/WIP5.txt
 Doc/wip6.txt
 *.stat
 Samples/DynamoDB/Delphi/CreateTable1/DynamoDBCreateTable.stat
+Source/SDK/DynamoDB/__recovery/__recovery.ini
+Source/SDK/DynamoDB/__recovery/Amazon.DynamoDB2.pas

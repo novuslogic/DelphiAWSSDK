@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<projectconfig>
-   <properties> 
-     <outputpath>D:\Projects\DelphiAWSSDK\Source\SDK\</outputpath>
-     <propertiespath>D:\Projects\DelphiAWSSDK\Code-generation\Generator\Properties\</propertiespath>
-     <sourcepath>D:\Projects\DelphiAWSSDK\Code-generation\Generator\Source\</sourcepath>
-   </properties>  
-</projectconfig>

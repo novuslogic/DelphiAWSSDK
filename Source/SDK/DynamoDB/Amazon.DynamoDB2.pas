@@ -1050,102 +1050,70 @@ type
   public
     procedure InitClient(aprofile: UTF8String; asecret_key: UTF8String;
       aaccess_key: UTF8String; aregion: UTF8String); override;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('BatchGetItem')]  
     function BatchGetItem(aBatchGetItemInput: tBatchGetItemInput):tBatchGetItemOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('BatchWriteItem')]  
     function BatchWriteItem(aBatchWriteItemInput: tBatchWriteItemInput):tBatchWriteItemOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('CreateBackup')]  
     function CreateBackup(aCreateBackupInput: tCreateBackupInput):tCreateBackupOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('CreateGlobalTable')]  
     function CreateGlobalTable(aCreateGlobalTableInput: tCreateGlobalTableInput):tCreateGlobalTableOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('CreateTable')]  
     function CreateTable(aCreateTableInput: tCreateTableInput):tCreateTableOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DeleteBackup')]  
     function DeleteBackup(aDeleteBackupInput: tDeleteBackupInput):tDeleteBackupOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DeleteItem')]  
     function DeleteItem(aDeleteItemInput: tDeleteItemInput):tDeleteItemOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DeleteTable')]  
     function DeleteTable(aDeleteTableInput: tDeleteTableInput):tDeleteTableOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeBackup')]  
     function DescribeBackup(aDescribeBackupInput: tDescribeBackupInput):tDescribeBackupOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeContinuousBackups')]  
     function DescribeContinuousBackups(aDescribeContinuousBackupsInput: tDescribeContinuousBackupsInput):tDescribeContinuousBackupsOutput;
     [TAmazonMarshallerAttribute('DescribeEndpoints')]  
     function DescribeEndpoints(aDescribeEndpointsRequest: tDescribeEndpointsRequest):tDescribeEndpointsResponse;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeGlobalTable')]  
     function DescribeGlobalTable(aDescribeGlobalTableInput: tDescribeGlobalTableInput):tDescribeGlobalTableOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeGlobalTableSettings')]  
     function DescribeGlobalTableSettings(aDescribeGlobalTableSettingsInput: tDescribeGlobalTableSettingsInput):tDescribeGlobalTableSettingsOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeLimits')]  
     function DescribeLimits(aDescribeLimitsInput: tDescribeLimitsInput):tDescribeLimitsOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeTable')]  
     function DescribeTable(aDescribeTableInput: tDescribeTableInput):tDescribeTableOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('DescribeTimeToLive')]  
     function DescribeTimeToLive(aDescribeTimeToLiveInput: tDescribeTimeToLiveInput):tDescribeTimeToLiveOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('GetItem')]  
     function GetItem(aGetItemInput: tGetItemInput):tGetItemOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('ListBackups')]  
     function ListBackups(aListBackupsInput: tListBackupsInput):tListBackupsOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('ListGlobalTables')]  
     function ListGlobalTables(aListGlobalTablesInput: tListGlobalTablesInput):tListGlobalTablesOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('ListTables')]  
     function ListTables(aListTablesInput: tListTablesInput):tListTablesOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('ListTagsOfResource')]  
     function ListTagsOfResource(aListTagsOfResourceInput: tListTagsOfResourceInput):tListTagsOfResourceOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('PutItem')]  
     function PutItem(aPutItemInput: tPutItemInput):tPutItemOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('Query')]  
     function Query(aQueryInput: tQueryInput):tQueryOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('RestoreTableFromBackup')]  
     function RestoreTableFromBackup(aRestoreTableFromBackupInput: tRestoreTableFromBackupInput):tRestoreTableFromBackupOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('RestoreTableToPointInTime')]  
     function RestoreTableToPointInTime(aRestoreTableToPointInTimeInput: tRestoreTableToPointInTimeInput):tRestoreTableToPointInTimeOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('Scan')]  
     function Scan(aScanInput: tScanInput):tScanOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('TagResource')]  
     procedure TagResource(aTagResourceInput: tTagResourceInput);
-    aaa$procedurename
     [TAmazonMarshallerAttribute('UntagResource')]  
     procedure UntagResource(aUntagResourceInput: tUntagResourceInput);
-    aaa$procedurename
     [TAmazonMarshallerAttribute('UpdateContinuousBackups')]  
     function UpdateContinuousBackups(aUpdateContinuousBackupsInput: tUpdateContinuousBackupsInput):tUpdateContinuousBackupsOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('UpdateGlobalTable')]  
     function UpdateGlobalTable(aUpdateGlobalTableInput: tUpdateGlobalTableInput):tUpdateGlobalTableOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('UpdateGlobalTableSettings')]  
     function UpdateGlobalTableSettings(aUpdateGlobalTableSettingsInput: tUpdateGlobalTableSettingsInput):tUpdateGlobalTableSettingsOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('UpdateItem')]  
     function UpdateItem(aUpdateItemInput: tUpdateItemInput):tUpdateItemOutput;
-    aaa$procedurename
     [TAmazonMarshallerAttribute('UpdateTable')]  
     function UpdateTable(aUpdateTableInput: tUpdateTableInput):tUpdateTableOutput;
   end;

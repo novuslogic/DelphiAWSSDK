@@ -53,9 +53,10 @@ type
     <%$JSONOperationDocumentation=JSON.JSONQuery($JSONOperation, "documentation")%>  
     <%IF(SYS.IsVarEmpty($JSONOperationDocumentation)=false)%> 
     <%$Doc=JSON.ToJSONValue($JSONOperationDocumentation)%>
-    <%$filename=$$docfolder+$procedurename + ".html"%>
-    <%SYS.STRINGTOFILE($Doc, "D:\Projects\DelphiAWSSDK\Doc\test.html")%>
-    <%=$filename%>
+    <%$folder=$$docfolder+$endpointPrefix+"\"%>
+    <%$filename=$folder+$procedurename+".html"%>
+    <%SYS.CreateFolder($folder)%>
+    <%SYS.STRINGTOFILE($Doc, $filename)%>
     <%ENDIF%>
     [TAmazonMarshallerAttribute('<%=JSON.ToJSONValue(JSON.JSONQuery($JSONOperation, "name"))%>')]  
     <%IF(SYS.IsVarEmpty($JSONOperationOutput)=true)%>                                                                                                                                                                                                                                                                                                                                                                                                              
