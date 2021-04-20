@@ -104,6 +104,7 @@ begin
       begin
         // fiErrorCode := E.Message
         fsErrorMessage := E.Message;
+        aResponse := FResponseContent.DataString;
 
         if Trim(aResponse) = '' then
           aResponse := fsErrorMessage;
