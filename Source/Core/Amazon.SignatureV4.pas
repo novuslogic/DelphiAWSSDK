@@ -3,7 +3,7 @@ unit Amazon.SignatureV4;
 
 interface
 
-Uses Classes, Amazon.Utils, SysUtils, IdGlobal, Amazon.Interfaces,
+Uses Classes, Amazon.Utils, SysUtils, {$IFDEF DELPHIXE8_UP}IdGlobal,{$ENDIF} Amazon.Interfaces,
   Amazon.Request;
 
 const

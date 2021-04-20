@@ -15,6 +15,12 @@
 
 (* http://docwiki.embarcadero.com/RADStudio/Rio/en/Compiler_Versions *)
 
+
+(* Delphi 10.4  / C++Builder Sydney / D27 *)
+{$IFDEF VER340}
+   {$DEFINE DELPHI10_4}
+{$ENDIF}
+
 (* Delphi 10.3  / C++Builder Rio / D26 *)
 {$IFDEF VER330}
    {$DEFINE DELPHI10_3}
@@ -92,6 +98,19 @@
 {$IFDEF VER185}
    {$DEFINE DELPHI2007_1}
 {$ENDIF}
+
+{$IFDEF DELPHI10_4}
+   {$DEFINE DELPHI10_4_UP} 
+   {$DEFINE DELPHI10_3_UP}
+   {$DEFINE DELPHI10_2_UP}
+   {$DEFINE DELPHI10_1_UP}
+   {$DEFINE DELPHI10_UP}
+   {$DEFINE DELPHIXE8_UP}
+   {$DEFINE DELPHIXE7_UP}
+   {$DEFINE DELPHIXE6_UP}
+   {$DEFINE DELPHI2009_UP}
+{$ENDIF}
+
 
 {$IFDEF DELPHI10_3}
    {$DEFINE DELPHI10_3_UP}
