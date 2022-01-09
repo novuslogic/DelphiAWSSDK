@@ -1,4 +1,8 @@
-﻿18/03/2019
+﻿09/1/2002   
+
+* Update for Delphi 10.4 and Delphi 11
+
+18/03/2019
 
 * Experimental Code-Generation based on CodeImatic.codegen 
 * Support for Delphi 10.3  / C++Builder Rio

@@ -14,7 +14,7 @@ uses
   Amazon.Request in 'Amazon.Request.pas',
   Amazon.Response in 'Amazon.Response.pas',
   Amazon.IndyRESTClient in 'Amazon.IndyRESTClient.pas',
-  Amazon.DelphiRESTClient in 'Amazon.DelphiRESTClient.pas',
+ // Amazon.DelphiRESTClient in 'Amazon.DelphiRESTClient.pas',
   Amazon.SignatureV4 in 'Amazon.SignatureV4.pas',
   Amazon.Marshaller in 'Amazon.Marshaller.pas',
   Amazon.DynamoDB in 'Amazon.DynamoDB.pas';
