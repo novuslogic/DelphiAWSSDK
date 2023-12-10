@@ -1,17 +1,8 @@
-
-
-https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html
-
+# Environment Variables
 
 * AWS_ACCESS_KEY_ID
 * AWS_SECRET_ACCESS_KEY
+* AWS_DEFAULT_REGION - not supported 
 
 
-AWS Regions and Endpoints
-
-https://docs.aws.amazon.com/general/latest/gr/rande.html
-
-* AWS_REGION
-
-* AWS_CREDENTIAL_FILE
-* AWS_PROFILE
+[Environment variables to configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
