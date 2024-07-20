@@ -1,4 +1,9 @@
-﻿09/1/2022
+﻿20/07/2024
+
+* Updated for Delphi 12
+
+
+09/1/2022
 
 * Update for Delphi 10.4 and Delphi 11
 
