@@ -49,7 +49,7 @@ type
       aprofile: UTF8String; asecret_key: UTF8String; aaccess_key: UTF8String;
       aregion: UTF8String); overload;
 
-    destructor Destory;
+    destructor Destroy; override;
 
     procedure InitClient(aprofile: UTF8String; asecret_key: UTF8String;
       aaccess_key: UTF8String; aregion: UTF8String); virtual;
@@ -108,9 +108,10 @@ begin
   InitClient(aprofile, asecret_key, aaccess_key, aregion);
 end;
 
-destructor TAmazonClient.Destory;
+destructor TAmazonClient.Destroy;
 begin
   FreeandNil(FAmazonCredentials);
+  inherited;
 end;
 
 procedure TAmazonClient.InitClient(aprofile: UTF8String;
